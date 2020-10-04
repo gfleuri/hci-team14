@@ -2,7 +2,7 @@
   "name": "hci-team14",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gfleuri.github.io/hci-team14/",
+  "homepage": "https://gfleuri.github.io/hci-team14",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
