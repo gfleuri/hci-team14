@@ -3,7 +3,24 @@
   min-height: 500px;
   height: 100%;
   width: 100%;
-  background-color: white;
   margin-top: 10px;
   border-radius: 10px;
+}
+/* Note Styling */
+.note-style {
+  border: 1px solid #dedede;
+  border-radius: 10px;
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Area where notes will be created */
+.create-note {
+  border: 1px solid #dedede;
+  border-radius: 10px;
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
