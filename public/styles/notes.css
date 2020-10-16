@@ -1,0 +1,9 @@
+/* Area where notes will be loaded */
+.load-notes {
+  min-height: 500px;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  margin-top: 10px;
+  border-radius: 10px;
+}
