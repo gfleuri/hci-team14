@@ -3,6 +3,11 @@ body {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
+textarea {
+  width: 99%;
+  height: 99%;
+}
+
 /* Main Styling */
 .main {
   margin: 0 5% 10% 5%;

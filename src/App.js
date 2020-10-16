@@ -16,9 +16,10 @@ export class App extends React.Component {
           alt="HCI Icon"
           width="150"
           height="150"
+          style={{ marginTop: "10px" }}
         ></img>
         <div
-          style={{ marginTop: "20px", marginBottom: "20px", fontSize: "28px" }}
+          style={{ marginTop: "10px", marginBottom: "20px", fontSize: "28px" }}
         >
           Hello teammates!
         </div>
