@@ -120,7 +120,7 @@ export class LoadNotes extends React.Component {
     let loadedNotes = []; // Will Store each loaded note
 
     // Looping through IDs to load
-    for (let i = 0; i < noteIDsToLoad.length; i++) {
+    for (let i = noteIDsToLoad.length - 1; i > 0; i--) {
       // Getting the IDs
       let noteID = noteIDsToLoad[i];
 
