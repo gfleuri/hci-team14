@@ -3,6 +3,7 @@ body {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
+/* Texbox CSS */
 textarea {
   width: 99%;
   height: 99%;
