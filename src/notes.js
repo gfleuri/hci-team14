@@ -1,12 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-// Initializing if null
-if (localStorage.getItem("active-notes") === null) {
-  localStorage.setItem("active-notes", "0");
+// Initializng counter for amount of notes
+if (localStorage.getItem("note-count") === null) {
+  localStorage.setItem("note-count", 0);
 }
-// Initializng
-let noteListSize = localStorage.getItem("active-notes").split(" ").length;
 
 // Preventing Site/Page Refresh when entering form
 let noRefresh = function (e) {
@@ -15,6 +13,7 @@ let noRefresh = function (e) {
 
 function clearAll() {
   localStorage.clear();
+  localStorage.setItem("note-count", 0);
   // Refreshing notes
   ReactDOM.render(<LoadNotes />, document.getElementById("load-notes"));
   // Refreshing CreateNote - Updates newNoteID Value
@@ -24,13 +23,7 @@ function clearAll() {
 // Adding NEW notes
 function addNote() {
   // Create new note ID
-  let newNoteID = noteListSize;
-
-  // Add new note to actives
-  localStorage.setItem(
-    "active-notes",
-    localStorage.getItem("active-notes") + " " + newNoteID
-  );
+  let newNoteID = localStorage.getItem("note-count");
 
   // Store new note data
   localStorage.setItem(
@@ -41,12 +34,17 @@ function addNote() {
     "note-id-" + newNoteID + "-context",
     document.getElementById("context-" + newNoteID).value
   );
+  localStorage.setItem("note-id-" + newNoteID + "-visibility", "true");
+
+  // Increasing note counter by 1, locStor returns string so must parse
+  localStorage.setItem(
+    "note-count",
+    parseFloat(localStorage.getItem("note-count")) + 1
+  );
 
   // Resetting text boxes
   document.getElementById("title-" + newNoteID).value = "";
   document.getElementById("context-" + newNoteID).value = "";
-
-  noteListSize++; // increasing counter
 
   // Refreshing notes
   ReactDOM.render(<LoadNotes />, document.getElementById("load-notes"));
@@ -63,9 +61,8 @@ export class CreateNote extends React.Component {
   componentDidMount() {}
 
   render() {
-    let newNoteID = noteListSize;
-    let title = "title-" + newNoteID;
-    let context = "context-" + newNoteID;
+    let title = "title-" + localStorage.getItem("note-count");
+    let context = "context-" + localStorage.getItem("note-count");
     return (
       <div>
         <div style={{ marginBottom: "10px" }}>Create a note</div>
@@ -109,24 +106,12 @@ export class LoadNotes extends React.Component {
   componentDidMount() {}
 
   render() {
-    // Initializing if null
-    if (localStorage.getItem("active-notes") === null) {
-      localStorage.setItem("active-notes", "0");
-    }
-
-    // Getting active note IDs to load
-    let noteIDsToLoad = localStorage.getItem("active-notes").split(" ");
-
     let loadedNotes = []; // Will Store each loaded note
-
     // Looping through IDs to load
-    for (let i = noteIDsToLoad.length - 1; i > 0; i--) {
-      // Getting the IDs
-      let noteID = noteIDsToLoad[i];
-
+    for (let i = localStorage.getItem("note-count") - 1; i >= 0; i--) {
       // Getting specific note ID values
-      let title = localStorage.getItem("note-id-" + noteID + "-title");
-      let context = localStorage.getItem("note-id-" + noteID + "-context");
+      let title = localStorage.getItem("note-id-" + i + "-title");
+      let context = localStorage.getItem("note-id-" + i + "-context");
 
       let noteDOM = (
         <div className="note-style" key={i}>
@@ -143,9 +128,9 @@ export class LoadNotes extends React.Component {
       );
 
       // skipping over empty id 0
-      if (noteID > 0) {
-        loadedNotes.push(noteDOM); // adding to the loaded notes
-      }
+      //if (noteID > 0) {
+      loadedNotes.push(noteDOM); // adding to the loaded notes
+      //}
     }
 
     return loadedNotes;
