@@ -5,6 +5,8 @@ import ReactDOM from "react-dom";
 if (localStorage.getItem("note-count") === null) {
   localStorage.setItem("note-count", 0);
   localStorage.setItem("note-sort", "none");
+  localStorage.setItem("note-review-progress", 0);
+  localStorage.setItem("note-review-total", 0);
 }
 
 /**
@@ -15,10 +17,8 @@ function changeSort(difficulty) {
   // Setting new sort
   localStorage.setItem("note-sort", difficulty);
 
-  // Refreshing notes
-  ReactDOM.render(<LoadNotes />, document.getElementById("load-notes"));
-  // Refreshing CreateNote - Updates newNoteID Value
-  ReactDOM.render(<CreateNote />, document.getElementById("create-note"));
+  // Refreshing page classes
+  renderPage();
 }
 
 /**
@@ -30,10 +30,8 @@ function changeDifficulty(id, difficulty) {
   // Setting new difficulty
   localStorage.setItem("note-id-" + id + "-difficulty", difficulty);
 
-  // Refreshing notes
-  ReactDOM.render(<LoadNotes />, document.getElementById("load-notes"));
-  // Refreshing CreateNote - Updates newNoteID Value
-  ReactDOM.render(<CreateNote />, document.getElementById("create-note"));
+  // Refreshing page classes
+  renderPage();
 }
 
 // Preventing Site/Page Refresh when entering form
@@ -48,10 +46,10 @@ function clearAll() {
   localStorage.clear();
   localStorage.setItem("note-count", 0);
   localStorage.setItem("note-sort", "none");
-  // Refreshing notes
-  ReactDOM.render(<LoadNotes />, document.getElementById("load-notes"));
-  // Refreshing CreateNote - Updates newNoteID Value
-  ReactDOM.render(<CreateNote />, document.getElementById("create-note"));
+  localStorage.setItem("note-review-progress", 0);
+  localStorage.setItem("note-review-total", 0);
+  // Refreshing page classes
+  renderPage();
 }
 
 /**
@@ -73,6 +71,7 @@ function addNote() {
   localStorage.setItem("note-id-" + newNoteID + "-visibility", "true");
   localStorage.setItem("note-id-" + newNoteID + "-difficulty", "Medium");
   localStorage.setItem("note-id-" + newNoteID + "-review", "");
+  localStorage.setItem("note-id-" + newNoteID + "-checked", "false");
 
   // Increasing note counter by 1, locStor returns string so must parse
   localStorage.setItem(
@@ -84,10 +83,8 @@ function addNote() {
   document.getElementById("title-" + newNoteID).value = "";
   document.getElementById("context-" + newNoteID).value = "";
 
-  // Refreshing notes
-  ReactDOM.render(<LoadNotes />, document.getElementById("load-notes"));
-  // Refreshing CreateNote - Updates newNoteID Value
-  ReactDOM.render(<CreateNote />, document.getElementById("create-note"));
+  // Refreshing page classes
+  renderPage();
 }
 
 /**
@@ -102,6 +99,7 @@ function loadNotes() {
     let context = localStorage.getItem("note-id-" + i + "-context");
     let difficulty = localStorage.getItem("note-id-" + i + "-difficulty");
     let review = localStorage.getItem("note-id-" + i + "-review");
+    let checked = localStorage.getItem("note-id-" + i + "-checked");
     let search =
       "https://www.youtube.com/results?search_query=" + title.replace(" ", "+");
 
@@ -119,6 +117,20 @@ function loadNotes() {
           <div>
             <br />
             <b>Review by {review}</b>
+            {checked === "false" && (
+              <div style={{ float: "right" }}>
+                <button onClick={() => changeProgress(i, "true")}>
+                  In Progress
+                </button>
+              </div>
+            )}
+            {checked === "true" && (
+              <div style={{ float: "right" }}>
+                <button onClick={() => changeProgress(i, "false")}>
+                  Completed
+                </button>
+              </div>
+            )}
           </div>
         )}
         <br />
@@ -168,17 +180,26 @@ function loadNotes() {
  **/
 function setReview(days) {
   let date = new Date();
-  let date2 = new Date();
   let separator = 0;
   let perDay = parseInt(localStorage.getItem("note-count") / days);
   if (localStorage.getItem("note-count") / days > perDay) {
     perDay++;
   }
 
+  let activeNotes = 0;
+  // Getting specific note ID values
+  for (let i = localStorage.getItem("note-count") - 1; i >= 0; i--) {
+    if (localStorage.getItem("note-id-" + i + "-visibility") === "true") {
+      activeNotes++;
+    }
+  }
+  localStorage.setItem("note-review-total", activeNotes);
+
   // Resetting sort
   localStorage.setItem("note-sort", "none");
   // Getting specific note ID values
   for (let i = localStorage.getItem("note-count") - 1; i >= 0; i--) {
+    let date2 = new Date();
     date2.setDate(date.getDate() + separator);
     localStorage.setItem("note-id-" + i + "-review", date2.toDateString());
     if (i % perDay === 0) {
@@ -186,10 +207,8 @@ function setReview(days) {
     }
   }
 
-  // Refreshing notes
-  ReactDOM.render(<LoadNotes />, document.getElementById("load-notes"));
-  // Refreshing CreateNote - Updates newNoteID Value
-  ReactDOM.render(<CreateNote />, document.getElementById("create-note"));
+  // Refreshing page classes
+  renderPage();
 }
 
 /**
@@ -201,10 +220,46 @@ function removeReview() {
     localStorage.setItem("note-id-" + i + "-review", "");
   }
 
+  // Reseting review values
+  localStorage.setItem("note-review-progress", 0);
+  localStorage.setItem("note-review-total", 0);
+
+  // Refreshing page classes
+  renderPage();
+}
+
+/**
+ * Changes the progress of a note
+ * @param {integer} i id of the note to be changed
+ * @param {string} value value of progress
+ **/
+function changeProgress(i, value) {
+  localStorage.setItem("note-id-" + i + "-checked", value);
+
+  if (value === "true") {
+    // note is completed
+    localStorage.setItem(
+      "note-review-progress",
+      parseInt(localStorage.getItem("note-review-progress")) + 1
+    );
+  } else {
+    localStorage.setItem(
+      "note-review-progress",
+      parseInt(localStorage.getItem("note-review-progress")) - 1
+    );
+  }
+
+  // Refreshing page classes
+  renderPage();
+}
+
+function renderPage() {
   // Refreshing notes
   ReactDOM.render(<LoadNotes />, document.getElementById("load-notes"));
   // Refreshing CreateNote - Updates newNoteID Value
   ReactDOM.render(<CreateNote />, document.getElementById("create-note"));
+  // Refreshing review
+  ReactDOM.render(<ReviewNotes />, document.getElementById("review-notes"));
 }
 
 export class ReviewNotes extends React.Component {
@@ -216,6 +271,8 @@ export class ReviewNotes extends React.Component {
   componentDidMount() {}
 
   render() {
+    let progress = localStorage.getItem("note-review-progress");
+    let total = localStorage.getItem("note-review-total");
     return (
       <div>
         <div style={{ marginBottom: "10px" }}>Review Your Notes</div>
@@ -238,6 +295,11 @@ export class ReviewNotes extends React.Component {
             Dsiabled Review Feature
           </button>
         </div>
+        {total !== "0" && (
+          <div>
+            Progress {progress} / {total}
+          </div>
+        )}
       </div>
     );
   }
