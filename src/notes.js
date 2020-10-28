@@ -1,12 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-// Initializng counter for amount of notes
+// Initializng counter for amount of notes and sort type
 if (localStorage.getItem("note-count") === null) {
   localStorage.setItem("note-count", 0);
   localStorage.setItem("note-sort", "none");
 }
 
+/**
+ * Changes how all of the notes will be sorted upon load
+ * @param {string} difficulty type of new difficulty to sort by
+ **/
 function changeSort(difficulty) {
   // Setting new sort
   localStorage.setItem("note-sort", difficulty);
@@ -17,6 +21,11 @@ function changeSort(difficulty) {
   ReactDOM.render(<CreateNote />, document.getElementById("create-note"));
 }
 
+/**
+ * Changes a notes difficulty
+ * @param {integer} id id of the note to be changed
+ * @param {string} difficulty notes type of new difficulty
+ **/
 function changeDifficulty(id, difficulty) {
   // Setting new difficulty
   localStorage.setItem("note-id-" + id + "-difficulty", difficulty);
@@ -32,6 +41,9 @@ let noRefresh = function (e) {
   e.preventDefault();
 };
 
+/**
+ * Removes all of the existing notes
+ **/
 function clearAll() {
   localStorage.clear();
   localStorage.setItem("note-count", 0);
@@ -42,7 +54,9 @@ function clearAll() {
   ReactDOM.render(<CreateNote />, document.getElementById("create-note"));
 }
 
-// Adding NEW notes
+/**
+ * Creates a new note
+ **/
 function addNote() {
   // Create new note ID
   let newNoteID = localStorage.getItem("note-count");
@@ -75,6 +89,9 @@ function addNote() {
   ReactDOM.render(<CreateNote />, document.getElementById("create-note"));
 }
 
+/**
+ * Returns all of the notes to be loaded
+ **/
 function loadNotes() {
   let loadedNotes = []; // Will Store each loaded note
   // Looping through IDs to load
