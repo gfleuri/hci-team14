@@ -110,8 +110,13 @@ function loadNotes() {
           <button onClick={() => changeDifficulty(i, "Medium")}>Medium</button>
           <button onClick={() => changeDifficulty(i, "Hard")}>Hard</button>
         </div>
-        <div>
-          <b>Difficulty: {difficulty}</b>
+        <div
+          style={{
+            borderBottom: "1px solid #dedede",
+            padding: "5px",
+          }}
+        >
+          Difficulty: {difficulty}
         </div>
         {review !== "" && (
           <div>
@@ -134,22 +139,40 @@ function loadNotes() {
           </div>
         )}
         <br />
-        <div>
-          <b>Title</b>
+        <div
+          style={{
+            padding: "5px",
+          }}
+        >
+          Title: {title}
         </div>
-        <div>{title}</div>
         <br />
-        <div>
-          <b>Context</b>
+        <div
+          style={{
+            border: "1px solid #dedede",
+            borderRadius: "5px",
+            padding: "5px",
+            minHeight: "50px",
+          }}
+        >
+          {context}
         </div>
-        <div>{context}</div>
         <br />
-        <div>
-          <b>Suggestions</b>
-        </div>
+        <div>Suggestions</div>
+        <br />
         <div>
           <a href={search} style={{ marginLeft: "10px" }}>
-            Note to YouTube
+            <div
+              style={{
+                border: "1px solid #dedede",
+                borderRadius: "5px",
+                padding: "5px",
+                width: "110px",
+                height: "20px",
+              }}
+            >
+              YouTube Video
+            </div>
           </a>
         </div>
       </div>
@@ -261,6 +284,8 @@ function renderPage() {
   ReactDOM.render(<CreateNote />, document.getElementById("create-note"));
   // Refreshing review
   ReactDOM.render(<ReviewNotes />, document.getElementById("review-notes"));
+  // Refreshing sort
+  ReactDOM.render(<SortNotes />, document.getElementById("sort-notes"));
 }
 
 export class ReviewNotes extends React.Component {
@@ -276,7 +301,9 @@ export class ReviewNotes extends React.Component {
     let total = localStorage.getItem("note-review-total");
     return (
       <div>
-        <div style={{ marginBottom: "10px" }}>Review Your Notes</div>
+        <div style={{ marginBottom: "10px" }}>
+          <b>Review Notes</b>
+        </div>
         <div>How many days do you want for review?</div>
         <button onClick={() => setReview(2)}>2</button>
         <button onClick={() => setReview(3)}>3</button>
@@ -291,16 +318,43 @@ export class ReviewNotes extends React.Component {
         <button onClick={() => setReview(12)}>12</button>
         <button onClick={() => setReview(13)}>13</button>
         <button onClick={() => setReview(14)}>14</button>
-        <div>
-          <button onClick={() => removeReview()}>
-            Dsiabled Review Feature
-          </button>
-        </div>
         {total !== "0" && (
           <div>
-            Progress {progress} / {total}
+            <br />
+            <button onClick={() => removeReview()}>
+              Disabled Review Feature
+            </button>
+            <br />
+            <br />
+            <b>
+              Progress {progress} / {total}
+            </b>
           </div>
         )}
+      </div>
+    );
+  }
+}
+
+export class SortNotes extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { response: "" };
+  }
+
+  componentDidMount() {}
+
+  render() {
+    return (
+      <div>
+        <div style={{ marginBottom: "10px" }}>
+          <b>Sort Notes</b>
+        </div>
+        <button onClick={() => changeSort("none")}>Show All</button>
+        <button onClick={() => changeSort("Easy")}>Sort Easy</button>
+        <button onClick={() => changeSort("Medium")}>Sort Medium</button>
+        <button onClick={() => changeSort("Hard")}>Sort Hard</button>
+        <button onClick={() => changeSort("Rank")}>Sort Ranked</button>
       </div>
     );
   }
@@ -319,12 +373,9 @@ export class CreateNote extends React.Component {
     let context = "context-" + localStorage.getItem("note-count");
     return (
       <div>
-        <button onClick={() => changeSort("none")}>Show All</button>
-        <button onClick={() => changeSort("Easy")}>Sort Easy</button>
-        <button onClick={() => changeSort("Medium")}>Sort Medium</button>
-        <button onClick={() => changeSort("Hard")}>Sort Hard</button>
-        <button onClick={() => changeSort("Rank")}>Sort Ranked</button>
-        <div style={{ marginBottom: "10px" }}>Create a note</div>
+        <div style={{ marginBottom: "10px" }}>
+          <b>Create Notes</b>
+        </div>
         Title
         <form onSubmit={noRefresh}>
           <textarea

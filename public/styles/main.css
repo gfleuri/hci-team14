@@ -1,12 +1,12 @@
 body {
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(250, 250, 250);
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
 /* Texbox CSS */
 textarea {
-  width: 99%;
-  height: 99%;
+  width: 95%;
+  height: 95%;
 }
 
 /* Main Styling */
@@ -25,4 +25,12 @@ textarea {
   border-radius: 10px;
   background-color: white;
   text-align: center;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+  position: relative;
+  color: rgb(146, 6, 6);
+  display: inline-block;
 }
