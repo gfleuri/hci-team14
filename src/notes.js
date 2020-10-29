@@ -102,6 +102,8 @@ function loadNotes() {
     let checked = localStorage.getItem("note-id-" + i + "-checked");
     let search =
       "https://www.youtube.com/results?search_query=" + title.replace(" ", "+");
+    let searchGoogle =
+      "https://www.google.com/search?q=site:edu+" + title.replace(" ", "+");
 
     let noteDOM = (
       <div className="note-style" key={i}>
@@ -172,6 +174,23 @@ function loadNotes() {
               }}
             >
               YouTube Video
+            </div>
+          </a>
+
+          <a
+            href={searchGoogle}
+            style={{ marginLeft: "10px", color: "rgb(6, 78, 146)" }}
+          >
+            <div
+              style={{
+                border: "1px solid #dedede",
+                borderRadius: "5px",
+                padding: "5px",
+                width: "90px",
+                height: "20px",
+              }}
+            >
+              Google Edu
             </div>
           </a>
         </div>
