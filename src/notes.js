@@ -218,6 +218,7 @@ function removeReview() {
   // Getting specific note ID values
   for (let i = localStorage.getItem("note-count") - 1; i >= 0; i--) {
     localStorage.setItem("note-id-" + i + "-review", "");
+    localStorage.setItem("note-id-" + i + "-checked", "false");
   }
 
   // Reseting review values
