@@ -107,32 +107,40 @@ function loadNotes() {
 
     let noteDOM = (
       <div className="note-style" key={i}>
-        <div style={{ float: "right" }}>
-          <button onClick={() => changeDifficulty(i, "Easy")}>Easy</button>
-          <button onClick={() => changeDifficulty(i, "Medium")}>Medium</button>
-          <button onClick={() => changeDifficulty(i, "Hard")}>Hard</button>
+        <div className="note-difficulty-button-container">
+          <button
+            className="note-button-easy"
+            onClick={() => changeDifficulty(i, "Easy")}
+          >
+            Easy
+          </button>
+          <button
+            className="note-button-medium"
+            onClick={() => changeDifficulty(i, "Medium")}
+          >
+            Medium
+          </button>
+          <button
+            className="note-button-hard"
+            onClick={() => changeDifficulty(i, "Hard")}
+          >
+            Hard
+          </button>
         </div>
-        <div
-          style={{
-            borderBottom: "1px solid #dedede",
-            padding: "5px",
-          }}
-        >
-          Difficulty: {difficulty}
-        </div>
+        <div className="note-difficulty">Difficulty: {difficulty}</div>
         {review !== "" && (
           <div>
             <br />
             <b>Review by {review}</b>
             {checked === "false" && (
-              <div style={{ float: "right" }}>
+              <div className="note-progress-button-container">
                 <button onClick={() => changeProgress(i, "true")}>
                   In Progress
                 </button>
               </div>
             )}
             {checked === "true" && (
-              <div style={{ float: "right" }}>
+              <div className="note-progress-button-container">
                 <button onClick={() => changeProgress(i, "false")}>
                   Completed
                 </button>
@@ -141,57 +149,19 @@ function loadNotes() {
           </div>
         )}
         <br />
-        <div
-          style={{
-            padding: "5px",
-          }}
-        >
-          Title: {title}
-        </div>
+        <div className="note-title">Title: {title}</div>
         <br />
-        <div
-          style={{
-            border: "1px solid #dedede",
-            borderRadius: "5px",
-            padding: "5px",
-            minHeight: "50px",
-          }}
-        >
-          {context}
-        </div>
+        <div className="note-context">{context}</div>
         <br />
         <div>Suggestions</div>
         <br />
         <div>
-          <a href={search} style={{ marginLeft: "10px" }}>
-            <div
-              style={{
-                border: "1px solid #dedede",
-                borderRadius: "5px",
-                padding: "5px",
-                width: "110px",
-                height: "20px",
-              }}
-            >
-              YouTube Video
-            </div>
+          <a href={search} className="note-youtube-link">
+            <div className="note-youtube-link-context">YouTube Video</div>
           </a>
 
-          <a
-            href={searchGoogle}
-            style={{ marginLeft: "10px", color: "rgb(6, 78, 146)" }}
-          >
-            <div
-              style={{
-                border: "1px solid #dedede",
-                borderRadius: "5px",
-                padding: "5px",
-                width: "90px",
-                height: "20px",
-              }}
-            >
-              Google Edu
-            </div>
+          <a href={searchGoogle} className="note-google-link">
+            <div className="note-google-link-context">Google Edu</div>
           </a>
         </div>
       </div>
@@ -320,27 +290,95 @@ export class ReviewNotes extends React.Component {
     let total = localStorage.getItem("note-review-total");
     return (
       <div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="note-review-title">
           <b>Review Notes</b>
         </div>
         <div>How many days do you want for review?</div>
-        <button onClick={() => setReview(2)}>2</button>
-        <button onClick={() => setReview(3)}>3</button>
-        <button onClick={() => setReview(4)}>4</button>
-        <button onClick={() => setReview(5)}>5</button>
-        <button onClick={() => setReview(6)}>6</button>
-        <button onClick={() => setReview(7)}>7</button>
-        <button onClick={() => setReview(8)}>8</button>
-        <button onClick={() => setReview(9)}>9</button>
-        <button onClick={() => setReview(10)}>10</button>
-        <button onClick={() => setReview(11)}>11</button>
-        <button onClick={() => setReview(12)}>12</button>
-        <button onClick={() => setReview(13)}>13</button>
-        <button onClick={() => setReview(14)}>14</button>
+        <button
+          className="note-review-button-days"
+          onClick={() => setReview(2)}
+        >
+          2
+        </button>
+        <button
+          className="note-review-button-days"
+          onClick={() => setReview(3)}
+        >
+          3
+        </button>
+        <button
+          className="note-review-button-days"
+          onClick={() => setReview(4)}
+        >
+          4
+        </button>
+        <button
+          className="note-review-button-days"
+          onClick={() => setReview(5)}
+        >
+          5
+        </button>
+        <button
+          className="note-review-button-days"
+          onClick={() => setReview(6)}
+        >
+          6
+        </button>
+        <button
+          className="note-review-button-days"
+          onClick={() => setReview(7)}
+        >
+          7
+        </button>
+        <button
+          className="note-review-button-days"
+          onClick={() => setReview(8)}
+        >
+          8
+        </button>
+        <button
+          className="note-review-button-days"
+          onClick={() => setReview(9)}
+        >
+          9
+        </button>
+        <button
+          className="note-review-button-days"
+          onClick={() => setReview(10)}
+        >
+          10
+        </button>
+        <button
+          className="note-review-button-days"
+          onClick={() => setReview(11)}
+        >
+          11
+        </button>
+        <button
+          className="note-review-button-days"
+          onClick={() => setReview(12)}
+        >
+          12
+        </button>
+        <button
+          className="note-review-button-days"
+          onClick={() => setReview(13)}
+        >
+          13
+        </button>
+        <button
+          className="note-review-button-days"
+          onClick={() => setReview(14)}
+        >
+          14
+        </button>
         {total !== "0" && (
           <div>
             <br />
-            <button onClick={() => removeReview()}>
+            <button
+              className="note-review-button-disable"
+              onClick={() => removeReview()}
+            >
               Disabled Review Feature
             </button>
             <br />
@@ -366,7 +404,7 @@ export class SortNotes extends React.Component {
   render() {
     return (
       <div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="note-sort-title">
           <b>Sort Notes</b>
         </div>
         <button onClick={() => changeSort("none")}>Show All</button>
@@ -392,7 +430,7 @@ export class CreateNote extends React.Component {
     let context = "context-" + localStorage.getItem("note-count");
     return (
       <div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="note-create-title">
           <b>Create Notes</b>
         </div>
         Title
@@ -415,10 +453,10 @@ export class CreateNote extends React.Component {
             placeholder="Enter the context of the note here"
           ></textarea>
         </form>
-        <button style={{ margin: "10px" }} onClick={addNote}>
+        <button className="note-create-submit" onClick={addNote}>
           Create
         </button>
-        <button style={{ margin: "10px" }} onClick={clearAll}>
+        <button className="note-create-clear" onClick={clearAll}>
           Clear All
         </button>
       </div>

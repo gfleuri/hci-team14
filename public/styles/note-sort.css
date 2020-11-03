@@ -1,0 +1,13 @@
+/* Area where sort settings are */
+.sort-notes {
+  border: 1px solid #dedede;
+  border-radius: 10px;
+  background-color: white;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+/* Note Sort Title area */
+.note-sort-title {
+  margin-bottom: 10px;
+}
