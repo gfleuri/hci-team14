@@ -1,0 +1,89 @@
+/* Area where notes will be loaded */
+.load-notes {
+  min-height: 500px;
+  height: 100%;
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+/* Note Styling */
+.note-style {
+  border: 1px solid #dedede;
+  border-radius: 10px;
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  white-space: pre-line;
+  white-space: pre-wrap;
+}
+
+/* Note Title area */
+.note-title {
+  padding: 5px;
+}
+
+/* Note Context area */
+.note-context {
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  padding: 5px;
+  min-height: 50px;
+}
+
+/* Note Difficulty label */
+.note-difficulty {
+  border-bottom: 1px solid #dedede;
+  padding: 5px;
+}
+
+/* Note Difficulty Button Location */
+.note-difficulty-button-container {
+  float: right;
+}
+
+/* Note Progress Button Location */
+.note-progress-button-container {
+  float: right;
+}
+
+/* CSS of the YouTube Link */
+.note-youtube-link {
+  margin-left: 10px;
+}
+
+/* CSS of the YouTube Link Context */
+.note-youtube-link-context {
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  padding: 5px;
+  width: 110px;
+  height: 20px;
+}
+
+/* CSS of the Google Link */
+.note-google-link {
+  margin-left: 10px;
+  color: rgb(6, 78, 146);
+}
+
+/* CSS of the Google Link Context */
+.note-google-link-context {
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  padding: 5px;
+  width: 90px;
+  height: 20px;
+}
+
+/* Note card Easy Button */
+.note-button-easy {
+}
+
+/* Note card Medium Button */
+.note-button-medium {
+}
+
+/* Note card Hard Button */
+.note-button-hard {
+}

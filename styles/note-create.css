@@ -1,0 +1,24 @@
+/* Area where notes will be created */
+.create-note {
+  border: 1px solid #dedede;
+  border-radius: 10px;
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+/* Note Create Title area */
+.note-create-title {
+  margin-bottom: 10px;
+}
+
+/* Note Create's Create Button */
+.note-create-submit {
+  margin: 10px;
+}
+
+/* Note Create's Clear All Button */
+.note-create-clear {
+  margin: 10px;
+}
