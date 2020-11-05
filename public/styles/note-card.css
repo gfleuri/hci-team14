@@ -76,6 +76,21 @@
   height: 20px;
 }
 
+/* CSS of the Khan Link */
+.note-khan-link {
+  margin-left: 10px;
+  color: rgb(50, 6, 146);
+}
+
+/* CSS of the Khan Link Context */
+.note-khan-link-context {
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  padding: 5px;
+  width: 80px;
+  height: 20px;
+}
+
 /* Note Difficulty Button */
 .note-button-easy {
   padding: 5px;

@@ -104,6 +104,9 @@ function loadNotes() {
       "https://www.youtube.com/results?search_query=" + title.replace(" ", "+");
     let searchGoogle =
       "https://www.google.com/search?q=site:edu+" + title.replace(" ", "+");
+    let searchKhan =
+      "https://www.khanacademy.org/search?referer=%2F&page_search_query=" +
+      title.replace(" ", "+");
 
     let noteDOM = (
       <div className="note-style" key={i}>
@@ -168,6 +171,10 @@ function loadNotes() {
 
           <a href={searchGoogle} className="note-google-link">
             <div className="note-google-link-context">Google Edu</div>
+          </a>
+
+          <a href={searchKhan} className="note-khan-link">
+            <div className="note-khan-link-context">Khan Acad</div>
           </a>
         </div>
       </div>
