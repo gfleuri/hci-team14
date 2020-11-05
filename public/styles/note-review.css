@@ -16,6 +16,17 @@
   border-bottom: 1px solid #dedede;
 }
 
+/* Progress Information Area */
+.note-review-info {
+  margin-bottom: 0px;
+}
+
+/* Progress Information Text Area */
+.note-review-info-text {
+  padding: 20px;
+  margin-top: -15px;
+}
+
 /* Note Review Day Select Buttons */
 .note-review-button-days {
   padding: 5px;

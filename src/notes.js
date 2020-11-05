@@ -294,6 +294,92 @@ export class ReviewNotes extends React.Component {
   render() {
     let progress = localStorage.getItem("note-review-progress");
     let total = localStorage.getItem("note-review-total");
+
+    let listBars = []; // where bars will be loaded
+    let length = "" + (100 / parseFloat(total) - 1) + "%";
+    let difference = parseFloat(total) - parseFloat(progress);
+    let ratio = parseFloat(progress) / parseFloat(total);
+    let ratioString = Math.round(100 * ratio);
+
+    // Default message
+    let reviewMessage =
+      "You've completed " +
+      progress +
+      " out of " +
+      total +
+      " notes. When reviewing notes, make sure to click the in-progress button to change the note's review status to complete. Then, you may return here to keep track of what progress you have made!";
+    if (ratio > 0.25) {
+      reviewMessage =
+        "Good job! You're making more progress with " +
+        ratioString +
+        "% completed! That's " +
+        progress +
+        " out of " +
+        total +
+        " notes. When reviewing notes, make sure to click the in-progress button to change the note's review status to complete. Then, you may return here to keep track of what progress you have made!";
+    }
+    if (ratio > 0.5) {
+      reviewMessage =
+        "Wow! You're already half way there with " +
+        ratioString +
+        "% reviewed! Amazing, now you've studied " +
+        progress +
+        " out of " +
+        total +
+        " notes. When reviewing notes, make sure to click the in-progress button to change the note's review status to complete. Then, you may return here to keep track of what progress you have made!";
+    }
+    if (ratio > 0.75) {
+      reviewMessage =
+        "Almost done! " +
+        ratioString +
+        "% is a great amount of progress that has been made! Not that many notes left! " +
+        progress +
+        " out of " +
+        total +
+        " notes are completed! Keep it up! When reviewing notes, make sure to click the in-progress button to change the note's review status to complete. Then, you may return here to keep track of what progress you have made!";
+    }
+    if (ratio === 1) {
+      reviewMessage =
+        "Congratulations! You've done it! " +
+        ratioString +
+        "%!!! Yup, thats a total of " +
+        total +
+        " reviewed notes! Feel free to continue studying as much as you would like. There's never enough knowledge to learn! As Benjamin Franklin once said, 'An investment in knowledge pays the best interest'. When reviewing notes, make sure to click the in-progress button to change the note's review status to complete. Then, you may return here to keep track of what progress you have made!";
+    }
+
+    for (let i = 0; i < total; i++) {
+      let barDOM = (
+        <div
+          style={{
+            float: "left",
+            width: length,
+            minWidth: "5px",
+            height: "20px",
+            border: "1px solid #dedede",
+            backgroundColor: "#aad681",
+            borderRadius: "10px",
+            marginRight: "0.5%",
+          }}
+        ></div>
+      );
+      if (i >= progress) {
+        barDOM = (
+          <div
+            style={{
+              float: "left",
+              width: length,
+              minWidth: "5px",
+              height: "20px",
+              border: "1px solid #dedede",
+              borderRadius: "10px",
+              marginRight: "0.5%",
+            }}
+          ></div>
+        );
+      }
+      listBars.push(barDOM);
+    }
+
     return (
       <div>
         <div className="note-review-title">Review Notes</div>
@@ -377,7 +463,7 @@ export class ReviewNotes extends React.Component {
           14
         </button>
         {total !== "0" && (
-          <div>
+          <div className="note-review-info">
             <br />
             <button
               className="note-review-button-disable"
@@ -386,10 +472,12 @@ export class ReviewNotes extends React.Component {
               Disabled Review Feature
             </button>
             <br />
+            <div style={{ marginTop: "20px" }}>
+              {listBars}
+              <span style={{ color: "white" }}>review</span>
+            </div>
             <br />
-            <b>
-              Progress {progress} / {total}
-            </b>
+            <div className="note-review-info-text">{reviewMessage}</div>
           </div>
         )}
       </div>
