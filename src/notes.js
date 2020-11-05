@@ -296,9 +296,7 @@ export class ReviewNotes extends React.Component {
     let total = localStorage.getItem("note-review-total");
     return (
       <div>
-        <div className="note-review-title">
-          <b>Review Notes</b>
-        </div>
+        <div className="note-review-title">Review Notes</div>
         <div>How many days do you want for review?</div>
         <button
           className="note-review-button-days"
@@ -410,9 +408,7 @@ export class SortNotes extends React.Component {
   render() {
     return (
       <div>
-        <div className="note-sort-title">
-          <b>Sort Notes</b>
-        </div>
+        <div className="note-sort-title">Sort Notes</div>
         <button
           className="note-sort-button-all"
           onClick={() => changeSort("none")}
@@ -461,10 +457,7 @@ export class CreateNote extends React.Component {
     let context = "context-" + localStorage.getItem("note-count");
     return (
       <div>
-        <div className="note-create-title">
-          <b>Create Notes</b>
-        </div>
-        Title
+        <div className="note-create-title">Create Notes</div>
         <form onSubmit={noRefresh}>
           <textarea
             id={title}
@@ -474,7 +467,6 @@ export class CreateNote extends React.Component {
             placeholder="Enter a title, theme, or topic here"
           ></textarea>
         </form>
-        Context
         <form onSubmit={noRefresh}>
           <textarea
             id={context}

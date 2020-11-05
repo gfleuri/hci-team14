@@ -10,7 +10,11 @@
 
 /* Note Create Title area */
 .note-create-title {
-  margin-bottom: 10px;
+  font-size: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dedede;
 }
 
 /* Note Create's Create Button */

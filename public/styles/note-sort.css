@@ -9,13 +9,17 @@
 
 /* Note Sort Title area */
 .note-sort-title {
-  margin-bottom: 10px;
+  font-size: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dedede;
 }
 
 /* Note Sort Button */
 .note-sort-button-all {
   padding: 5px;
-  width: 15%;
+  width: 18%;
   margin-top: 5px;
   margin-right: 5px;
   background-color: white;
@@ -29,7 +33,7 @@
 /* Note Sort Button */
 .note-sort-button-easy {
   padding: 5px;
-  width: 15%;
+  width: 18%;
   margin-top: 5px;
   margin-right: 5px;
   background-color: white;
@@ -44,7 +48,7 @@
 /* Note Sort Button */
 .note-sort-button-medium {
   padding: 5px;
-  width: 15%;
+  width: 18%;
   margin-top: 5px;
   margin-right: 5px;
   background-color: white;
@@ -59,7 +63,7 @@
 /* Note Sort Button */
 .note-sort-button-hard {
   padding: 5px;
-  width: 15%;
+  width: 18%;
   margin-top: 5px;
   margin-right: 5px;
   background-color: white;
@@ -74,7 +78,7 @@
 /* Note Sort Button */
 .note-sort-button-rank {
   padding: 5px;
-  width: 15%;
+  width: 18%;
   margin-top: 5px;
   margin-right: 5px;
   background-color: white;
