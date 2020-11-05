@@ -1,0 +1,23 @@
+/* Screen size greater than 1000 px */
+@media only screen and (min-width: 1000px) {
+  /* Main Styling */
+  .main {
+    margin: 0;
+    position: absolute;
+    width: 970px;
+    left: 50%;
+    margin-left: -485px;
+  }
+  /* Note Styling */
+  .note-style {
+    float: left;
+    width: 445px;
+    margin-left: 10px;
+  }
+  /* Note Context area */
+  .note-context {
+    min-height: 200px;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+}
