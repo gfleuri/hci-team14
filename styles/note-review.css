@@ -1,21 +1,59 @@
 /* Area where review settings are */
 .review-notes {
   border: 1px solid #dedede;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: white;
   padding: 10px;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 /* Note Review Title area */
 .note-review-title {
-  margin-bottom: 10px;
+  font-size: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dedede;
+}
+
+/* Progress Information Area */
+.note-review-info {
+  margin-bottom: 0px;
+}
+
+/* Progress Information Text Area */
+.note-review-info-text {
+  padding: 20px;
+  margin-top: -15px;
 }
 
 /* Note Review Day Select Buttons */
 .note-review-button-days {
+  padding: 5px;
+  width: 7%;
+  min-width: 40px;
+  margin-top: 5px;
+  margin-right: 5px;
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+  border-radius: 5px;
+}
+.note-review-button-days:hover {
+  background-color: #e7e7e7;
 }
 
 /* Note Review Disable Button */
 .note-review-button-disable {
+  float: right;
+  padding: 5px;
+  width: 200px;
+  margin-right: 5px;
+  background-color: white;
+  color: black;
+  border: 2px solid #c26660;
+  border-radius: 5px;
+}
+.note-review-button-disable:hover {
+  background-color: #ebcfcd;
 }

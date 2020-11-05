@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(250, 250, 250);
+  background-color: rgb(253, 253, 253);
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
@@ -7,24 +7,14 @@ body {
 textarea {
   width: 95%;
   height: 95%;
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 /* Main Styling */
 .main {
   margin: 0 5% 10% 5%;
-}
-
-.box {
-  position: relative;
-  left: 50%;
-  width: 300px;
-  height: 400px;
-  margin-top: 30px;
-  margin-left: -152px;
-  border: 1.5px solid #dedede;
-  border-radius: 10px;
-  background-color: white;
-  text-align: center;
 }
 
 a {
@@ -33,4 +23,24 @@ a {
   position: relative;
   color: rgb(146, 6, 6);
   display: inline-block;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgb(219, 219, 219);
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(184, 184, 184);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(141, 141, 141);
 }
