@@ -95,6 +95,7 @@ function editNote(i) {
 function deleteNote(i) {
   // change note visibility
   localStorage.setItem("note-id-" + i + "-visibility", "false");
+  removeReview();
   // Refreshing page classes
   renderPage();
 }
