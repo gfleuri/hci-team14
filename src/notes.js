@@ -53,6 +53,53 @@ function clearAll() {
 }
 
 /**
+ * Restores all deleted notes
+ **/
+function restoreAll() {
+  // Looping through IDs to load
+  for (let i = localStorage.getItem("note-count") - 1; i >= 0; i--) {
+    // setting all note visibilities to true
+    localStorage.setItem("note-id-" + i + "-visibility", "true");
+  }
+
+  // Refreshing page classes
+  removeReview();
+  renderPage();
+}
+
+/**
+ * Creates a new note
+ * @param {integer} i id of the note to be deleted
+ **/
+function editNote(i) {
+  window.scrollTo(0, 0);
+  document.getElementById(
+    "title-" + localStorage.getItem("note-count")
+  ).value = localStorage.getItem("note-id-" + i + "-title");
+  document.getElementById(
+    "context-" + localStorage.getItem("note-count")
+  ).value = localStorage.getItem("note-id-" + i + "-context");
+  deleteNote(i);
+  removeReview();
+
+  // change note visibility
+  localStorage.setItem("note-id-" + i + "-visibility", "false");
+  // Refreshing page classes
+  renderPage();
+}
+
+/**
+ * Creates a new note
+ * @param {integer} i id of the note to be deleted
+ **/
+function deleteNote(i) {
+  // change note visibility
+  localStorage.setItem("note-id-" + i + "-visibility", "false");
+  // Refreshing page classes
+  renderPage();
+}
+
+/**
  * Creates a new note
  **/
 function addNote() {
@@ -94,6 +141,12 @@ function loadNotes() {
   let loadedNotes = []; // Will Store each loaded note
   // Looping through IDs to load
   for (let i = localStorage.getItem("note-count") - 1; i >= 0; i--) {
+    // Skips "Deleted" Notes
+    let visibility = localStorage.getItem("note-id-" + i + "-visibility");
+    if (visibility !== "true") {
+      continue;
+    }
+
     // Getting specific note ID values
     let title = localStorage.getItem("note-id-" + i + "-title");
     let context = localStorage.getItem("note-id-" + i + "-context");
@@ -177,6 +230,15 @@ function loadNotes() {
             <div className="note-khan-link-context">Khan Acad</div>
           </a>
         </div>
+        <br />
+        <div>Configuration</div>
+        <br />
+        <button className="note-button-edit" onClick={() => editNote(i)}>
+          Edit
+        </button>
+        <button className="note-button-delete" onClick={() => deleteNote(i)}>
+          Delete
+        </button>
       </div>
     );
 
@@ -304,7 +366,6 @@ export class ReviewNotes extends React.Component {
 
     let listBars = []; // where bars will be loaded
     let length = "" + (100 / parseFloat(total) - 1) + "%";
-    let difference = parseFloat(total) - parseFloat(progress);
     let ratio = parseFloat(progress) / parseFloat(total);
     let ratioString = Math.round(100 * ratio);
 
@@ -576,6 +637,9 @@ export class CreateNote extends React.Component {
         </button>
         <button className="note-create-clear" onClick={clearAll}>
           Clear All
+        </button>
+        <button className="note-create-restore" onClick={restoreAll}>
+          Restore All
         </button>
       </div>
     );
