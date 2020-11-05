@@ -12,12 +12,21 @@
   .note-style {
     float: left;
     width: 445px;
-    margin-left: 10px;
+    margin-left: 11px;
   }
   /* Note Context area */
   .note-context {
     min-height: 200px;
     max-height: 200px;
     overflow-y: auto;
+  }
+  /* Area where Title Is */
+  .title-container {
+    background-image: url("/hci-team14/stickynote.png");
+  }
+  /* Title Text */
+  .title-text-3 {
+    font-size: 20px;
+    display: block;
   }
 }

@@ -1,0 +1,24 @@
+/* Area where Title Is */
+.title-container {
+  border-bottom: 1px solid #dedede;
+  background-image: none;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding: 30px 30px 10px 30px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+/* Title Text */
+.title-text-1 {
+  font-size: 60px;
+}
+/* Title Text */
+.title-text-2 {
+  font-size: 30px;
+}
+/* Title Text */
+.title-text-3 {
+  font-size: 20px;
+  display: inline;
+}
