@@ -83,8 +83,8 @@ function addNote() {
   document.getElementById("title-" + newNoteID).value = "";
   document.getElementById("context-" + newNoteID).value = "";
 
-  // Refreshing page classes
-  renderPage();
+  // Will Disable Review and Refresh classes
+  removeReview();
 }
 
 /**
@@ -134,14 +134,20 @@ function loadNotes() {
             <b>Review by {review}</b>
             {checked === "false" && (
               <div className="note-progress-button-container">
-                <button onClick={() => changeProgress(i, "true")}>
+                <button
+                  className="note-button-progress"
+                  onClick={() => changeProgress(i, "true")}
+                >
                   In Progress
                 </button>
               </div>
             )}
             {checked === "true" && (
               <div className="note-progress-button-container">
-                <button onClick={() => changeProgress(i, "false")}>
+                <button
+                  className="note-button-complete"
+                  onClick={() => changeProgress(i, "false")}
+                >
                   Completed
                 </button>
               </div>
@@ -407,11 +413,36 @@ export class SortNotes extends React.Component {
         <div className="note-sort-title">
           <b>Sort Notes</b>
         </div>
-        <button onClick={() => changeSort("none")}>Show All</button>
-        <button onClick={() => changeSort("Easy")}>Sort Easy</button>
-        <button onClick={() => changeSort("Medium")}>Sort Medium</button>
-        <button onClick={() => changeSort("Hard")}>Sort Hard</button>
-        <button onClick={() => changeSort("Rank")}>Sort Ranked</button>
+        <button
+          className="note-sort-button-all"
+          onClick={() => changeSort("none")}
+        >
+          Show All
+        </button>
+        <button
+          className="note-sort-button-easy"
+          onClick={() => changeSort("Easy")}
+        >
+          Sort Easy
+        </button>
+        <button
+          className="note-sort-button-medium"
+          onClick={() => changeSort("Medium")}
+        >
+          Sort Medium
+        </button>
+        <button
+          className="note-sort-button-hard"
+          onClick={() => changeSort("Hard")}
+        >
+          Sort Hard
+        </button>
+        <button
+          className="note-sort-button-rank"
+          onClick={() => changeSort("Rank")}
+        >
+          Sort Ranked
+        </button>
       </div>
     );
   }

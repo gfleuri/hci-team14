@@ -3,7 +3,7 @@
   min-height: 500px;
   height: 100%;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 30px;
   border-radius: 10px;
 }
 
@@ -34,7 +34,7 @@
 /* Note Difficulty label */
 .note-difficulty {
   border-bottom: 1px solid #dedede;
-  padding: 5px;
+  padding: 5px 5px 15px 5px;
 }
 
 /* Note Difficulty Button Location */
@@ -76,14 +76,72 @@
   height: 20px;
 }
 
-/* Note card Easy Button */
+/* Note Difficulty Button */
 .note-button-easy {
+  padding: 5px;
+  width: 50px;
+  margin-right: 5px;
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+  border-radius: 5px;
+}
+.note-button-easy:hover {
+  background-color: #e7e7e7;
 }
 
-/* Note card Medium Button */
+/* Note Difficulty Button */
 .note-button-medium {
+  padding: 5px;
+  width: 70px;
+  margin-right: 5px;
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+  border-radius: 5px;
+}
+.note-button-medium:hover {
+  background-color: #e7e7e7;
 }
 
-/* Note card Hard Button */
+/* Note Difficulty Button */
 .note-button-hard {
+  padding: 5px;
+  width: 50px;
+  margin-right: 5px;
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+  border-radius: 5px;
+}
+.note-button-hard:hover {
+  background-color: #e7e7e7;
+}
+
+/* Note Progress Button */
+.note-button-progress {
+  padding: 5px;
+  width: 100px;
+  margin-right: 5px;
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+  border-radius: 5px;
+}
+.note-button-progress:hover {
+  background-color: #e7e7e7;
+}
+
+/* Note Complete Button */
+.note-button-complete {
+  padding: 5px;
+  width: 100px;
+  margin-right: 5px;
+  background-color: white;
+  color: black;
+  border: 2px solid #aad681;
+  border-radius: 5px;
+}
+.note-button-complete:hover {
+  background-color: #e7e7e7;
 }

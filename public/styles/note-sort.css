@@ -11,3 +11,77 @@
 .note-sort-title {
   margin-bottom: 10px;
 }
+
+/* Note Sort Button */
+.note-sort-button-all {
+  padding: 5px;
+  width: 15%;
+  margin-top: 5px;
+  margin-right: 5px;
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+}
+.note-sort-button-all:hover {
+  background-color: #e7e7e7;
+}
+
+/* Note Sort Button */
+.note-sort-button-easy {
+  padding: 5px;
+  width: 15%;
+  margin-top: 5px;
+  margin-right: 5px;
+  background-color: white;
+  color: black;
+  border: 2px solid #88fb91;
+  border-radius: 5px;
+}
+.note-sort-button-easy:hover {
+  background-color: #88fb9248;
+}
+
+/* Note Sort Button */
+.note-sort-button-medium {
+  padding: 5px;
+  width: 15%;
+  margin-top: 5px;
+  margin-right: 5px;
+  background-color: white;
+  color: black;
+  border: 2px solid #ecc864;
+  border-radius: 5px;
+}
+.note-sort-button-medium:hover {
+  background-color: #ecc8644b;
+}
+
+/* Note Sort Button */
+.note-sort-button-hard {
+  padding: 5px;
+  width: 15%;
+  margin-top: 5px;
+  margin-right: 5px;
+  background-color: white;
+  color: black;
+  border: 2px solid #c26660;
+  border-radius: 5px;
+}
+.note-sort-button-hard:hover {
+  background-color: #ebcfcd;
+}
+
+/* Note Sort Button */
+.note-sort-button-rank {
+  padding: 5px;
+  width: 15%;
+  margin-top: 5px;
+  margin-right: 5px;
+  background-color: white;
+  color: black;
+  border: 2px solid #7f60c2;
+  border-radius: 5px;
+}
+.note-sort-button-rank:hover {
+  background-color: #7f60c249;
+}

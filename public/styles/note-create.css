@@ -15,10 +15,30 @@
 
 /* Note Create's Create Button */
 .note-create-submit {
-  margin: 10px;
+  padding: 5px;
+  width: 25%;
+  margin-top: 5px;
+  margin-right: 5px;
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+  border-radius: 5px;
+}
+.note-create-submit:hover {
+  background-color: #e7e7e7;
 }
 
 /* Note Create's Clear All Button */
 .note-create-clear {
-  margin: 10px;
+  padding: 5px;
+  width: 25%;
+  margin-top: 5px;
+  margin-right: 5px;
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+  border-radius: 5px;
+}
+.note-create-clear:hover {
+  background-color: #e7e7e7;
 }
