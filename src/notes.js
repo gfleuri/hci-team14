@@ -268,12 +268,8 @@ function loadNotes() {
  **/
 function setReview(days) {
   let date = new Date();
-  let separator = 0;
-  let perDay = parseInt(localStorage.getItem("note-count") / days);
-  if (localStorage.getItem("note-count") / days > perDay) {
-    perDay++;
-  }
 
+  // Getting number of active notes
   let activeNotes = 0;
   // Getting specific note ID values
   for (let i = localStorage.getItem("note-count") - 1; i >= 0; i--) {
@@ -283,15 +279,34 @@ function setReview(days) {
   }
   localStorage.setItem("note-review-total", activeNotes);
 
+  // Making sure days don't exceed notes - defaults to 1 note per day
+  if (days > activeNotes) {
+    days = activeNotes;
+  }
+
+  let perDay = Math.floor(activeNotes / days); // how many notes to load per day
+  let separator = 0; // how many days to increment by, from the original
+  let counted = 0; // number of cards that have been assigned
+
   // Resetting sort
   localStorage.setItem("note-sort", "none");
   // Getting specific note ID values
   for (let i = localStorage.getItem("note-count") - 1; i >= 0; i--) {
-    let date2 = new Date();
-    date2.setDate(date.getDate() + separator);
-    localStorage.setItem("note-id-" + i + "-review", date2.toDateString());
-    if (i % perDay === 0) {
-      separator++;
+    if (localStorage.getItem("note-id-" + i + "-visibility") === "true") {
+      let date2 = new Date();
+      date2.setDate(date.getDate() + separator);
+      localStorage.setItem("note-id-" + i + "-review", date2.toDateString());
+
+      // Properly adjusting perDay to assign optimal amount of cards for each day
+      if (separator > days - 1 - (activeNotes % days)) {
+        perDay = Math.floor(activeNotes / days) + 1;
+      }
+
+      counted++; // card has been assigned
+      if (counted % perDay === 0) {
+        separator++; // increases the date
+        counted = 0;
+      }
     }
   }
 
@@ -419,6 +434,7 @@ export class ReviewNotes extends React.Component {
     for (let i = 0; i < total; i++) {
       let barDOM = (
         <div
+          key={i}
           style={{
             float: "left",
             width: length,
@@ -434,6 +450,7 @@ export class ReviewNotes extends React.Component {
       if (i >= progress) {
         barDOM = (
           <div
+            key={i}
             style={{
               float: "left",
               width: length,
