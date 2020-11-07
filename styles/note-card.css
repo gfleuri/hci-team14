@@ -21,6 +21,8 @@
 /* Note Title area */
 .note-title {
   padding: 5px;
+  border: 1px solid #dedede;
+  border-radius: 3px;
 }
 
 /* Note Context area */
