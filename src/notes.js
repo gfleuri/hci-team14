@@ -1,16 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-let pathname = "path" + window.location.pathname.replace(/\//g, "-");
-
 // Storing Recent Folder History
 if (localStorage.getItem("note-folder-history-1", "") === null) {
-  localStorage.setItem("note-folder-history-1", "");
+  localStorage.setItem("note-folder-history", "notes");
+  localStorage.setItem("note-folder-history-1", "notes");
   localStorage.setItem("note-folder-history-2", "");
   localStorage.setItem("note-folder-history-3", "");
   localStorage.setItem("note-folder-history-4", "");
   localStorage.setItem("note-folder-history-5", "");
 }
+
+let pathname = localStorage.getItem("note-folder-history");
 
 if (
   localStorage.getItem("note-folder-history-1") === pathname ||
@@ -90,7 +91,8 @@ function clearAll() {
   localStorage.setItem(pathname + "note-review-progress", 0);
   localStorage.setItem(pathname + "note-review-total", 0);
 
-  localStorage.setItem("note-folder-history-1", pathname);
+  localStorage.setItem("note-folder-history", "notes");
+  localStorage.setItem("note-folder-history-1", "notes");
   localStorage.setItem("note-folder-history-2", "");
   localStorage.setItem("note-folder-history-3", "");
   localStorage.setItem("note-folder-history-4", "");
@@ -187,6 +189,12 @@ function addNote() {
 
   // Will Disable Review and Refresh classes
   removeReview();
+}
+
+function openFolder(name) {
+  localStorage.setItem("note-folder-history", name);
+  // eslint-disable-next-line
+  window.location.pathname = window.location.pathname;
 }
 
 /**
@@ -740,75 +748,80 @@ export class Folder extends React.Component {
   componentDidMount() {}
 
   render() {
-    let history1 = localStorage
-      .getItem("note-folder-history-1")
-      .replace("path-", "")
-      .replace("%20", "");
-    let history2 = localStorage
-      .getItem("note-folder-history-2")
-      .replace("path-", "")
-      .replace("%20", "");
-    let history3 = localStorage
-      .getItem("note-folder-history-3")
-      .replace("path-", "")
-      .replace("%20", "");
-    let history4 = localStorage
-      .getItem("note-folder-history-4")
-      .replace("path-", "")
-      .replace("%20", "");
-    let history5 = localStorage
-      .getItem("note-folder-history-5")
-      .replace("path-", "")
-      .replace("%20", " ");
+    let history1 = localStorage.getItem("note-folder-history-1");
+    let history2 = localStorage.getItem("note-folder-history-2");
+    let history3 = localStorage.getItem("note-folder-history-3");
+    let history4 = localStorage.getItem("note-folder-history-4");
+    let history5 = localStorage.getItem("note-folder-history-5");
 
     return (
       <div>
         <div className="note-folder-title">Folders</div>
-        <div className="note-folder-example-link">
-          https://gfleuri.github.io/hci-team14/cs325
-        </div>
         <div className="note-folder-context">
-          You can have seperate folders of notes by changing the path in the
-          link. <br />
-          The example above would be a folder for all "CS325" notes. You can
-          create as many folders as you want!
+          Here you can create folders for your notes. Enter a folder name and
+          press enter to view its contents!
         </div>
-        <div className="note-folder-recent-title">Recent Folders</div>
+        <form onSubmit={noRefresh}>
+          <textarea
+            id="history-folder"
+            name="history-name"
+            rows="2"
+            cols="50"
+            placeholder="Enter the Folder name here"
+          ></textarea>
+        </form>
+        <button
+          className="note-create-submit"
+          onClick={() =>
+            openFolder(document.getElementById("history-folder").value)
+          }
+        >
+          Open Folder
+        </button>
+        <div className="note-folder-recent-title">
+          Recent Folders (Currently Open:{" "}
+          {localStorage.getItem("note-folder-history").toUpperCase()})
+        </div>
         <div style={{ display: "inline-block" }}>
           {history1 !== "" && (
-            <a href={history1} style={{ color: "#1d81af" }}>
-              <div className="note-folder-history">
-                {history1.toUpperCase()}
-              </div>
-            </a>
+            <div
+              className="note-folder-history"
+              onClick={() => openFolder(history1)}
+            >
+              {history1.toUpperCase()}
+            </div>
           )}
           {history2 !== "" && (
-            <a href={history2} style={{ color: "#1d81af" }}>
-              <div className="note-folder-history">
-                {history2.toUpperCase()}
-              </div>
-            </a>
+            <div
+              className="note-folder-history"
+              onClick={() => openFolder(history2)}
+            >
+              {history2.toUpperCase()}
+            </div>
           )}
           {history3 !== "" && (
-            <a href={history3} style={{ color: "#1d81af" }}>
-              <div className="note-folder-history">
-                {history3.toUpperCase()}
-              </div>
-            </a>
+            <div
+              className="note-folder-history"
+              onClick={() => openFolder(history3)}
+            >
+              {history3.toUpperCase()}
+            </div>
           )}
           {history4 !== "" && (
-            <a href={history4} style={{ color: "#1d81af" }}>
-              <div className="note-folder-history">
-                {history4.toUpperCase()}
-              </div>
-            </a>
+            <div
+              className="note-folder-history"
+              onClick={() => openFolder(history4)}
+            >
+              {history4.toUpperCase()}
+            </div>
           )}
           {history5 !== "" && (
-            <a href={history5} style={{ color: "#1d81af" }}>
-              <div className="note-folder-history">
-                {history5.toUpperCase()}
-              </div>
-            </a>
+            <div
+              className="note-folder-history"
+              onClick={() => openFolder(history5)}
+            >
+              {history5.toUpperCase()}
+            </div>
           )}
         </div>
       </div>
