@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/hci-team14/static/js/main.c4960e01.chunk.js",
-    "main.js.map": "/hci-team14/static/js/main.c4960e01.chunk.js.map",
+    "main.js": "/hci-team14/static/js/main.0b41ca8b.chunk.js",
+    "main.js.map": "/hci-team14/static/js/main.0b41ca8b.chunk.js.map",
     "runtime-main.js": "/hci-team14/static/js/runtime-main.a5876b39.js",
     "runtime-main.js.map": "/hci-team14/static/js/runtime-main.a5876b39.js.map",
     "static/js/2.a670165e.chunk.js": "/hci-team14/static/js/2.a670165e.chunk.js",
     "static/js/2.a670165e.chunk.js.map": "/hci-team14/static/js/2.a670165e.chunk.js.map",
     "index.html": "/hci-team14/index.html",
-    "precache-manifest.0b063ba966d284fa6c37f9592e50ca2b.js": "/hci-team14/precache-manifest.0b063ba966d284fa6c37f9592e50ca2b.js",
+    "precache-manifest.6cc6b17a86c36a4017ea596260b13ab9.js": "/hci-team14/precache-manifest.6cc6b17a86c36a4017ea596260b13ab9.js",
     "service-worker.js": "/hci-team14/service-worker.js",
     "static/js/2.a670165e.chunk.js.LICENSE.txt": "/hci-team14/static/js/2.a670165e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a5876b39.js",
     "static/js/2.a670165e.chunk.js",
-    "static/js/main.c4960e01.chunk.js"
+    "static/js/main.0b41ca8b.chunk.js"
   ]
 }
