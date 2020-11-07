@@ -1,13 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+let pathname = "path" + window.location.pathname.replace(/\//g, "-");
+
 // Initializng counter for amount of notes and sort type
-if (localStorage.getItem("note-count") === null) {
-  localStorage.setItem("note-count", 0);
-  localStorage.setItem("note-loaded", 0);
-  localStorage.setItem("note-sort", "none");
-  localStorage.setItem("note-review-progress", 0);
-  localStorage.setItem("note-review-total", 0);
+if (localStorage.getItem(pathname + "note-count") === null) {
+  localStorage.setItem(pathname + "note-count", 0);
+  localStorage.setItem(pathname + "note-loaded", 0);
+  localStorage.setItem(pathname + "note-sort", "none");
+  localStorage.setItem(pathname + "note-review-progress", 0);
+  localStorage.setItem(pathname + "note-review-total", 0);
 }
 
 /**
@@ -16,7 +18,7 @@ if (localStorage.getItem("note-count") === null) {
  **/
 function changeSort(difficulty) {
   // Setting new sort
-  localStorage.setItem("note-sort", difficulty);
+  localStorage.setItem(pathname + "note-sort", difficulty);
 
   // Refreshing page classes
   renderPage();
@@ -29,7 +31,7 @@ function changeSort(difficulty) {
  **/
 function changeDifficulty(id, difficulty) {
   // Setting new difficulty
-  localStorage.setItem("note-id-" + id + "-difficulty", difficulty);
+  localStorage.setItem(pathname + "note-id-" + id + "-difficulty", difficulty);
 
   // Refreshing page classes
   renderPage();
@@ -45,11 +47,11 @@ let noRefresh = function (e) {
  **/
 function clearAll() {
   localStorage.clear();
-  localStorage.setItem("note-count", 0);
-  localStorage.setItem("note-loaded", 0);
-  localStorage.setItem("note-sort", "none");
-  localStorage.setItem("note-review-progress", 0);
-  localStorage.setItem("note-review-total", 0);
+  localStorage.setItem(pathname + "note-count", 0);
+  localStorage.setItem(pathname + "note-loaded", 0);
+  localStorage.setItem(pathname + "note-sort", "none");
+  localStorage.setItem(pathname + "note-review-progress", 0);
+  localStorage.setItem(pathname + "note-review-total", 0);
   // Refreshing page classes
   renderPage();
 }
@@ -59,9 +61,9 @@ function clearAll() {
  **/
 function restoreAll() {
   // Looping through IDs to load
-  for (let i = localStorage.getItem("note-count") - 1; i >= 0; i--) {
+  for (let i = localStorage.getItem(pathname + "note-count") - 1; i >= 0; i--) {
     // setting all note visibilities to true
-    localStorage.setItem("note-id-" + i + "-visibility", "true");
+    localStorage.setItem(pathname + "note-id-" + i + "-visibility", "true");
   }
 
   // Refreshing page classes
@@ -76,16 +78,16 @@ function restoreAll() {
 function editNote(i) {
   window.scrollTo(0, 0);
   document.getElementById(
-    "title-" + localStorage.getItem("note-count")
-  ).value = localStorage.getItem("note-id-" + i + "-title");
+    "title-" + localStorage.getItem(pathname + "note-count")
+  ).value = localStorage.getItem(pathname + "note-id-" + i + "-title");
   document.getElementById(
-    "context-" + localStorage.getItem("note-count")
-  ).value = localStorage.getItem("note-id-" + i + "-context");
+    "context-" + localStorage.getItem(pathname + "note-count")
+  ).value = localStorage.getItem(pathname + "note-id-" + i + "-context");
   deleteNote(i);
   removeReview();
 
   // change note visibility
-  localStorage.setItem("note-id-" + i + "-visibility", "false");
+  localStorage.setItem(pathname + "note-id-" + i + "-visibility", "false");
   // Refreshing page classes
   renderPage();
 }
@@ -96,7 +98,7 @@ function editNote(i) {
  **/
 function deleteNote(i) {
   // change note visibility
-  localStorage.setItem("note-id-" + i + "-visibility", "false");
+  localStorage.setItem(pathname + "note-id-" + i + "-visibility", "false");
   removeReview();
   // Refreshing page classes
   renderPage();
@@ -107,26 +109,32 @@ function deleteNote(i) {
  **/
 function addNote() {
   // Create new note ID
-  let newNoteID = localStorage.getItem("note-count");
+  let newNoteID = localStorage.getItem(pathname + "note-count");
 
   // Store new note data
   localStorage.setItem(
-    "note-id-" + newNoteID + "-title",
+    pathname + "note-id-" + newNoteID + "-title",
     document.getElementById("title-" + newNoteID).value
   );
   localStorage.setItem(
-    "note-id-" + newNoteID + "-context",
+    pathname + "note-id-" + newNoteID + "-context",
     document.getElementById("context-" + newNoteID).value
   );
-  localStorage.setItem("note-id-" + newNoteID + "-visibility", "true");
-  localStorage.setItem("note-id-" + newNoteID + "-difficulty", "Medium");
-  localStorage.setItem("note-id-" + newNoteID + "-review", "");
-  localStorage.setItem("note-id-" + newNoteID + "-checked", "false");
+  localStorage.setItem(
+    pathname + "note-id-" + newNoteID + "-visibility",
+    "true"
+  );
+  localStorage.setItem(
+    pathname + "note-id-" + newNoteID + "-difficulty",
+    "Medium"
+  );
+  localStorage.setItem(pathname + "note-id-" + newNoteID + "-review", "");
+  localStorage.setItem(pathname + "note-id-" + newNoteID + "-checked", "false");
 
   // Increasing note counter by 1, locStor returns string so must parse
   localStorage.setItem(
-    "note-count",
-    parseFloat(localStorage.getItem("note-count")) + 1
+    pathname + "note-count",
+    parseFloat(localStorage.getItem(pathname + "note-count")) + 1
   );
 
   // Resetting text boxes
@@ -143,19 +151,23 @@ function addNote() {
 function loadNotes() {
   let loadedNotes = []; // Will Store each loaded note
   // Looping through IDs to load
-  for (let i = localStorage.getItem("note-count") - 1; i >= 0; i--) {
+  for (let i = localStorage.getItem(pathname + "note-count") - 1; i >= 0; i--) {
     // Skips "Deleted" Notes
-    let visibility = localStorage.getItem("note-id-" + i + "-visibility");
+    let visibility = localStorage.getItem(
+      pathname + "note-id-" + i + "-visibility"
+    );
     if (visibility !== "true") {
       continue;
     }
 
     // Getting specific note ID values
-    let title = localStorage.getItem("note-id-" + i + "-title");
-    let context = localStorage.getItem("note-id-" + i + "-context");
-    let difficulty = localStorage.getItem("note-id-" + i + "-difficulty");
-    let review = localStorage.getItem("note-id-" + i + "-review");
-    let checked = localStorage.getItem("note-id-" + i + "-checked");
+    let title = localStorage.getItem(pathname + "note-id-" + i + "-title");
+    let context = localStorage.getItem(pathname + "note-id-" + i + "-context");
+    let difficulty = localStorage.getItem(
+      pathname + "note-id-" + i + "-difficulty"
+    );
+    let review = localStorage.getItem(pathname + "note-id-" + i + "-review");
+    let checked = localStorage.getItem(pathname + "note-id-" + i + "-checked");
     let search =
       "https://www.youtube.com/results?search_query=" + title.replace(" ", "+");
     let searchGoogle =
@@ -289,15 +301,15 @@ function loadNotes() {
       </div>
     );
 
-    if (localStorage.getItem("note-sort") === "Easy") {
+    if (localStorage.getItem(pathname + "note-sort") === "Easy") {
       if (difficulty === "Easy") {
         loadedNotes.push(noteDOM); // add easy cards
       }
-    } else if (localStorage.getItem("note-sort") === "Medium") {
+    } else if (localStorage.getItem(pathname + "note-sort") === "Medium") {
       if (difficulty === "Medium") {
         loadedNotes.push(noteDOM); // add easy cards
       }
-    } else if (localStorage.getItem("note-sort") === "Hard") {
+    } else if (localStorage.getItem(pathname + "note-sort") === "Hard") {
       if (difficulty === "Hard") {
         loadedNotes.push(noteDOM); // add easy cards
       }
@@ -318,12 +330,14 @@ function setReview(days) {
   // Getting number of active notes
   let activeNotes = 0;
   // Getting specific note ID values
-  for (let i = localStorage.getItem("note-count") - 1; i >= 0; i--) {
-    if (localStorage.getItem("note-id-" + i + "-visibility") === "true") {
+  for (let i = localStorage.getItem(pathname + "note-count") - 1; i >= 0; i--) {
+    if (
+      localStorage.getItem(pathname + "note-id-" + i + "-visibility") === "true"
+    ) {
       activeNotes++;
     }
   }
-  localStorage.setItem("note-review-total", activeNotes);
+  localStorage.setItem(pathname + "note-review-total", activeNotes);
 
   // Making sure days don't exceed notes - defaults to 1 note per day
   if (days > activeNotes) {
@@ -335,13 +349,18 @@ function setReview(days) {
   let counted = 0; // number of cards that have been assigned
 
   // Resetting sort
-  localStorage.setItem("note-sort", "none");
+  localStorage.setItem(pathname + "note-sort", "none");
   // Getting specific note ID values
-  for (let i = localStorage.getItem("note-count") - 1; i >= 0; i--) {
-    if (localStorage.getItem("note-id-" + i + "-visibility") === "true") {
+  for (let i = localStorage.getItem(pathname + "note-count") - 1; i >= 0; i--) {
+    if (
+      localStorage.getItem(pathname + "note-id-" + i + "-visibility") === "true"
+    ) {
       let date2 = new Date();
       date2.setDate(date.getDate() + separator);
-      localStorage.setItem("note-id-" + i + "-review", date2.toDateString());
+      localStorage.setItem(
+        pathname + "note-id-" + i + "-review",
+        date2.toDateString()
+      );
 
       // Properly adjusting perDay to assign optimal amount of cards for each day
       if (separator > days - 1 - (activeNotes % days)) {
@@ -365,14 +384,14 @@ function setReview(days) {
  **/
 function removeReview() {
   // Getting specific note ID values
-  for (let i = localStorage.getItem("note-count") - 1; i >= 0; i--) {
-    localStorage.setItem("note-id-" + i + "-review", "");
-    localStorage.setItem("note-id-" + i + "-checked", "false");
+  for (let i = localStorage.getItem(pathname + "note-count") - 1; i >= 0; i--) {
+    localStorage.setItem(pathname + "note-id-" + i + "-review", "");
+    localStorage.setItem(pathname + "note-id-" + i + "-checked", "false");
   }
 
   // Reseting review values
-  localStorage.setItem("note-review-progress", 0);
-  localStorage.setItem("note-review-total", 0);
+  localStorage.setItem(pathname + "note-review-progress", 0);
+  localStorage.setItem(pathname + "note-review-total", 0);
 
   // Refreshing page classes
   renderPage();
@@ -384,18 +403,18 @@ function removeReview() {
  * @param {string} value value of progress
  **/
 function changeProgress(i, value) {
-  localStorage.setItem("note-id-" + i + "-checked", value);
+  localStorage.setItem(pathname + "note-id-" + i + "-checked", value);
 
   if (value === "true") {
     // note is completed
     localStorage.setItem(
-      "note-review-progress",
-      parseInt(localStorage.getItem("note-review-progress")) + 1
+      pathname + "note-review-progress",
+      parseInt(localStorage.getItem(pathname + "note-review-progress")) + 1
     );
   } else {
     localStorage.setItem(
-      "note-review-progress",
-      parseInt(localStorage.getItem("note-review-progress")) - 1
+      pathname + "note-review-progress",
+      parseInt(localStorage.getItem(pathname + "note-review-progress")) - 1
     );
   }
 
@@ -423,8 +442,8 @@ export class ReviewNotes extends React.Component {
   componentDidMount() {}
 
   render() {
-    let progress = localStorage.getItem("note-review-progress");
-    let total = localStorage.getItem("note-review-total");
+    let progress = localStorage.getItem(pathname + "note-review-progress");
+    let total = localStorage.getItem(pathname + "note-review-total");
 
     let listBars = []; // where bars will be loaded
     let length = "" + (100 / parseFloat(total) - 1) + "%";
@@ -626,7 +645,7 @@ export class SortNotes extends React.Component {
   componentDidMount() {}
 
   render() {
-    let size = localStorage.getItem("note-loaded");
+    let size = localStorage.getItem(pathname + "note-loaded");
 
     return (
       <div>
@@ -675,8 +694,8 @@ export class CreateNote extends React.Component {
   componentDidMount() {}
 
   render() {
-    let title = "title-" + localStorage.getItem("note-count");
-    let context = "context-" + localStorage.getItem("note-count");
+    let title = "title-" + localStorage.getItem(pathname + "note-count");
+    let context = "context-" + localStorage.getItem(pathname + "note-count");
     return (
       <div>
         <div className="note-create-title">Create Notes</div>
@@ -723,14 +742,14 @@ export class LoadNotes extends React.Component {
   render() {
     let loadedNotes = []; // Will Store each loaded note
 
-    if (localStorage.getItem("note-sort") === "Rank") {
-      localStorage.setItem("note-sort", "Hard");
+    if (localStorage.getItem(pathname + "note-sort") === "Rank") {
+      localStorage.setItem(pathname + "note-sort", "Hard");
       loadedNotes.push(loadNotes());
-      localStorage.setItem("note-sort", "Medium");
+      localStorage.setItem(pathname + "note-sort", "Medium");
       loadedNotes.push(loadNotes());
-      localStorage.setItem("note-sort", "Easy");
+      localStorage.setItem(pathname + "note-sort", "Easy");
       loadedNotes.push(loadNotes());
-      localStorage.setItem("note-sort", "Rank");
+      localStorage.setItem(pathname + "note-sort", "Rank");
     } else {
       loadedNotes = [loadNotes()];
     }
@@ -740,7 +759,7 @@ export class LoadNotes extends React.Component {
     for (let i = 0; i < loadedNotes.length; i++) {
       counter += loadedNotes[i].length;
     }
-    localStorage.setItem("note-loaded", counter);
+    localStorage.setItem(pathname + "note-loaded", counter);
 
     // Returning the notes to be loaded
     return loadedNotes;
