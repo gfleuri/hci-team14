@@ -1,0 +1,52 @@
+/* Area where folder settings are */
+.folder-notes {
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  background-color: white;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+/* Note Folder Title area */
+.note-folder-title {
+  font-size: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dedede;
+}
+
+/* Note Recent Title area */
+.note-folder-recent-title {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dedede;
+}
+
+/* Note Folder Example area */
+.note-folder-example-link {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #dedede;
+  border-radius: 5px;
+}
+
+/* Note Folder Context area */
+.note-folder-context {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Note Folder History area */
+.note-folder-history {
+  text-align: center;
+  float: left;
+  border: 1px solid #dedede;
+  width: 150px;
+  border-radius: 5px;
+  background-color: white;
+  padding: 10px;
+  margin-right: 5px;
+}

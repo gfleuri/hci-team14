@@ -3,6 +3,43 @@ import ReactDOM from "react-dom";
 
 let pathname = "path" + window.location.pathname.replace(/\//g, "-");
 
+// Storing Recent Folder History
+if (localStorage.getItem("note-folder-history-1", "") === null) {
+  localStorage.setItem("note-folder-history-1", "");
+  localStorage.setItem("note-folder-history-2", "");
+  localStorage.setItem("note-folder-history-3", "");
+  localStorage.setItem("note-folder-history-4", "");
+  localStorage.setItem("note-folder-history-5", "");
+}
+
+if (
+  localStorage.getItem("note-folder-history-1") === pathname ||
+  localStorage.getItem("note-folder-history-2") === pathname ||
+  localStorage.getItem("note-folder-history-3") === pathname ||
+  localStorage.getItem("note-folder-history-4") === pathname ||
+  localStorage.getItem("note-folder-history-5") === pathname
+) {
+  // do nothing
+} else {
+  localStorage.setItem(
+    "note-folder-history-5",
+    localStorage.getItem("note-folder-history-4")
+  );
+  localStorage.setItem(
+    "note-folder-history-4",
+    localStorage.getItem("note-folder-history-3")
+  );
+  localStorage.setItem(
+    "note-folder-history-3",
+    localStorage.getItem("note-folder-history-2")
+  );
+  localStorage.setItem(
+    "note-folder-history-2",
+    localStorage.getItem("note-folder-history-1")
+  );
+  localStorage.setItem("note-folder-history-1", pathname);
+}
+
 // Initializng counter for amount of notes and sort type
 if (localStorage.getItem(pathname + "note-count") === null) {
   localStorage.setItem(pathname + "note-count", 0);
@@ -52,6 +89,13 @@ function clearAll() {
   localStorage.setItem(pathname + "note-sort", "none");
   localStorage.setItem(pathname + "note-review-progress", 0);
   localStorage.setItem(pathname + "note-review-total", 0);
+
+  localStorage.setItem("note-folder-history-1", pathname);
+  localStorage.setItem("note-folder-history-2", "");
+  localStorage.setItem("note-folder-history-3", "");
+  localStorage.setItem("note-folder-history-4", "");
+  localStorage.setItem("note-folder-history-5", "");
+
   // Refreshing page classes
   renderPage();
 }
@@ -431,6 +475,8 @@ function renderPage() {
   ReactDOM.render(<ReviewNotes />, document.getElementById("review-notes"));
   // Refreshing sort
   ReactDOM.render(<SortNotes />, document.getElementById("sort-notes"));
+  // Refreshing sort
+  ReactDOM.render(<Folder />, document.getElementById("folder-notes"));
 }
 
 export class ReviewNotes extends React.Component {
@@ -680,6 +726,91 @@ export class SortNotes extends React.Component {
         >
           Sort Ranked
         </button>
+      </div>
+    );
+  }
+}
+
+export class Folder extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { response: "" };
+  }
+
+  componentDidMount() {}
+
+  render() {
+    let history1 = localStorage
+      .getItem("note-folder-history-1")
+      .replace("path-", "")
+      .replace("%20", "");
+    let history2 = localStorage
+      .getItem("note-folder-history-2")
+      .replace("path-", "")
+      .replace("%20", "");
+    let history3 = localStorage
+      .getItem("note-folder-history-3")
+      .replace("path-", "")
+      .replace("%20", "");
+    let history4 = localStorage
+      .getItem("note-folder-history-4")
+      .replace("path-", "")
+      .replace("%20", "");
+    let history5 = localStorage
+      .getItem("note-folder-history-5")
+      .replace("path-", "")
+      .replace("%20", " ");
+
+    return (
+      <div>
+        <div className="note-folder-title">Folders</div>
+        <div className="note-folder-example-link">
+          https://gfleuri.github.io/hci-team14/cs325
+        </div>
+        <div className="note-folder-context">
+          You can have seperate folders of notes by changing the path in the
+          link. <br />
+          The example above would be a folder for all "CS325" notes. You can
+          create as many folders as you want!
+        </div>
+        <div className="note-folder-recent-title">Recent Folders</div>
+        <div style={{ display: "inline-block" }}>
+          {history1 !== "" && (
+            <a href={history1} style={{ color: "#1d81af" }}>
+              <div className="note-folder-history">
+                {history1.toUpperCase()}
+              </div>
+            </a>
+          )}
+          {history2 !== "" && (
+            <a href={history2} style={{ color: "#1d81af" }}>
+              <div className="note-folder-history">
+                {history2.toUpperCase()}
+              </div>
+            </a>
+          )}
+          {history3 !== "" && (
+            <a href={history3} style={{ color: "#1d81af" }}>
+              <div className="note-folder-history">
+                {history3.toUpperCase()}
+              </div>
+            </a>
+          )}
+          {history4 !== "" && (
+            <a href={history4} style={{ color: "#1d81af" }}>
+              <div className="note-folder-history">
+                {history4.toUpperCase()}
+              </div>
+            </a>
+          )}
+          {history5 !== "" && (
+            <a href={history5} style={{ color: "#1d81af" }}>
+              <div className="note-folder-history">
+                {history5.toUpperCase()}
+              </div>
+            </a>
+          )}
+        </div>
       </div>
     );
   }
