@@ -8,6 +8,12 @@
     left: 50%;
     margin-left: -485px;
   }
+  /* Note Title area */
+  .note-title {
+    min-height: 40px;
+    max-height: 40px;
+    overflow-y: auto;
+  }
   /* Note Styling */
   .note-style {
     float: left;
@@ -16,8 +22,8 @@
   }
   /* Note Context area */
   .note-context {
-    min-height: 200px;
-    max-height: 200px;
+    min-height: 150px;
+    max-height: 150px;
     overflow-y: auto;
   }
   /* Area where Title Is */

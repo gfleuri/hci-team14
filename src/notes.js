@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 // Initializng counter for amount of notes and sort type
 if (localStorage.getItem("note-count") === null) {
   localStorage.setItem("note-count", 0);
+  localStorage.setItem("note-loaded", 0);
   localStorage.setItem("note-sort", "none");
   localStorage.setItem("note-review-progress", 0);
   localStorage.setItem("note-review-total", 0);
@@ -45,6 +46,7 @@ let noRefresh = function (e) {
 function clearAll() {
   localStorage.clear();
   localStorage.setItem("note-count", 0);
+  localStorage.setItem("note-loaded", 0);
   localStorage.setItem("note-sort", "none");
   localStorage.setItem("note-review-progress", 0);
   localStorage.setItem("note-review-total", 0);
@@ -256,7 +258,7 @@ function loadNotes() {
           </div>
         )}
         <br />
-        <div className="note-title">Title: {title}</div>
+        <div className="note-title">{title}</div>
         <br />
         <div className="note-context">{context}</div>
         <br />
@@ -624,9 +626,11 @@ export class SortNotes extends React.Component {
   componentDidMount() {}
 
   render() {
+    let size = localStorage.getItem("note-loaded");
+
     return (
       <div>
-        <div className="note-sort-title">Sort Notes</div>
+        <div className="note-sort-title">Sort Notes ({size})</div>
         <button
           className="note-sort-button-all"
           onClick={() => changeSort("none")}
@@ -726,10 +730,19 @@ export class LoadNotes extends React.Component {
       loadedNotes.push(loadNotes());
       localStorage.setItem("note-sort", "Easy");
       loadedNotes.push(loadNotes());
+      localStorage.setItem("note-sort", "Rank");
     } else {
-      loadedNotes = loadNotes();
+      loadedNotes = [loadNotes()];
     }
 
+    // Counting number of notes loaded
+    let counter = 0;
+    for (let i = 0; i < loadedNotes.length; i++) {
+      counter += loadedNotes[i].length;
+    }
+    localStorage.setItem("note-loaded", counter);
+
+    // Returning the notes to be loaded
     return loadedNotes;
   }
 }
