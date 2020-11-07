@@ -184,7 +184,51 @@ function loadNotes() {
             Hard
           </button>
         </div>
-        <div className="note-difficulty">Difficulty: {difficulty}</div>
+        <div className="note-difficulty">
+          {difficulty === "Easy" && (
+            <div
+              style={{
+                float: "left",
+                border: "1px solid #dedede",
+                width: "10px",
+                height: "10px",
+                borderRadius: "5px",
+                marginTop: "2.5px",
+                marginRight: "5px",
+                backgroundColor: "#88fb91",
+              }}
+            ></div>
+          )}
+          {difficulty === "Medium" && (
+            <div
+              style={{
+                float: "left",
+                border: "1px solid #dedede",
+                width: "10px",
+                height: "10px",
+                borderRadius: "5px",
+                marginTop: "2.5px",
+                marginRight: "5px",
+                backgroundColor: "#ecc864",
+              }}
+            ></div>
+          )}
+          {difficulty === "Hard" && (
+            <div
+              style={{
+                float: "left",
+                border: "1px solid #dedede",
+                width: "10px",
+                height: "10px",
+                borderRadius: "5px",
+                marginTop: "2.5px",
+                marginRight: "5px",
+                backgroundColor: "#c26660",
+              }}
+            ></div>
+          )}
+          Difficulty: {difficulty}
+        </div>
         {review !== "" && (
           <div>
             <br />
