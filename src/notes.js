@@ -487,6 +487,16 @@ function renderPage() {
   ReactDOM.render(<Folder />, document.getElementById("folder-notes"));
 }
 
+function expand(id) {
+  if (document.getElementById(id).style.display === "none") {
+    document.getElementById(id).style.display = "inline";
+    document.getElementById(id + "-text").innerHTML = "Hide";
+  } else {
+    document.getElementById(id).style.display = "none";
+    document.getElementById(id + "-text").innerHTML = "Show";
+  }
+}
+
 export class ReviewNotes extends React.Component {
   constructor(props) {
     super(props);
@@ -587,104 +597,114 @@ export class ReviewNotes extends React.Component {
 
     return (
       <div>
-        <div className="note-review-title">Review Notes</div>
-        <div>How many days do you want for review?</div>
-        <button
-          className="note-review-button-days"
-          onClick={() => setReview(2)}
-        >
-          2
-        </button>
-        <button
-          className="note-review-button-days"
-          onClick={() => setReview(3)}
-        >
-          3
-        </button>
-        <button
-          className="note-review-button-days"
-          onClick={() => setReview(4)}
-        >
-          4
-        </button>
-        <button
-          className="note-review-button-days"
-          onClick={() => setReview(5)}
-        >
-          5
-        </button>
-        <button
-          className="note-review-button-days"
-          onClick={() => setReview(6)}
-        >
-          6
-        </button>
-        <button
-          className="note-review-button-days"
-          onClick={() => setReview(7)}
-        >
-          7
-        </button>
-        <button
-          className="note-review-button-days"
-          onClick={() => setReview(8)}
-        >
-          8
-        </button>
-        <button
-          className="note-review-button-days"
-          onClick={() => setReview(9)}
-        >
-          9
-        </button>
-        <button
-          className="note-review-button-days"
-          onClick={() => setReview(10)}
-        >
-          10
-        </button>
-        <button
-          className="note-review-button-days"
-          onClick={() => setReview(11)}
-        >
-          11
-        </button>
-        <button
-          className="note-review-button-days"
-          onClick={() => setReview(12)}
-        >
-          12
-        </button>
-        <button
-          className="note-review-button-days"
-          onClick={() => setReview(13)}
-        >
-          13
-        </button>
-        <button
-          className="note-review-button-days"
-          onClick={() => setReview(14)}
-        >
-          14
-        </button>
-        {total !== "0" && (
-          <div className="note-review-info">
-            <br />
-            <button
-              className="note-review-button-disable"
-              onClick={() => removeReview()}
-            >
-              Disabled Review Feature
-            </button>
-            <br />
-            <div style={{ marginTop: "20px" }}>
-              {listBars}
-              <span style={{ color: "white" }}>review</span>
+        <div className="note-review-title">
+          Review Notes{" "}
+          <button
+            className="display-expand"
+            onClick={() => expand("display-review")}
+          >
+            <div id="display-review-text">Hide</div>
+          </button>
+        </div>
+        <div id="display-review">
+          <div>How many days do you want for review?</div>
+          <button
+            className="note-review-button-days"
+            onClick={() => setReview(2)}
+          >
+            2
+          </button>
+          <button
+            className="note-review-button-days"
+            onClick={() => setReview(3)}
+          >
+            3
+          </button>
+          <button
+            className="note-review-button-days"
+            onClick={() => setReview(4)}
+          >
+            4
+          </button>
+          <button
+            className="note-review-button-days"
+            onClick={() => setReview(5)}
+          >
+            5
+          </button>
+          <button
+            className="note-review-button-days"
+            onClick={() => setReview(6)}
+          >
+            6
+          </button>
+          <button
+            className="note-review-button-days"
+            onClick={() => setReview(7)}
+          >
+            7
+          </button>
+          <button
+            className="note-review-button-days"
+            onClick={() => setReview(8)}
+          >
+            8
+          </button>
+          <button
+            className="note-review-button-days"
+            onClick={() => setReview(9)}
+          >
+            9
+          </button>
+          <button
+            className="note-review-button-days"
+            onClick={() => setReview(10)}
+          >
+            10
+          </button>
+          <button
+            className="note-review-button-days"
+            onClick={() => setReview(11)}
+          >
+            11
+          </button>
+          <button
+            className="note-review-button-days"
+            onClick={() => setReview(12)}
+          >
+            12
+          </button>
+          <button
+            className="note-review-button-days"
+            onClick={() => setReview(13)}
+          >
+            13
+          </button>
+          <button
+            className="note-review-button-days"
+            onClick={() => setReview(14)}
+          >
+            14
+          </button>
+          {total !== "0" && (
+            <div className="note-review-info">
+              <br />
+              <button
+                className="note-review-button-disable"
+                onClick={() => removeReview()}
+              >
+                Disabled Review Feature
+              </button>
+              <br />
+              <div style={{ marginTop: "20px" }}>
+                {listBars}
+                <span style={{ color: "white" }}>review</span>
+              </div>
+              <br />
+              <div className="note-review-info-text">{reviewMessage}</div>
             </div>
-            <br />
-            <div className="note-review-info-text">{reviewMessage}</div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     );
   }
@@ -703,37 +723,47 @@ export class SortNotes extends React.Component {
 
     return (
       <div>
-        <div className="note-sort-title">Sort Notes ({size})</div>
-        <button
-          className="note-sort-button-all"
-          onClick={() => changeSort("none")}
-        >
-          Show All
-        </button>
-        <button
-          className="note-sort-button-easy"
-          onClick={() => changeSort("Easy")}
-        >
-          Sort Easy
-        </button>
-        <button
-          className="note-sort-button-medium"
-          onClick={() => changeSort("Medium")}
-        >
-          Sort Medium
-        </button>
-        <button
-          className="note-sort-button-hard"
-          onClick={() => changeSort("Hard")}
-        >
-          Sort Hard
-        </button>
-        <button
-          className="note-sort-button-rank"
-          onClick={() => changeSort("Rank")}
-        >
-          Sort Ranked
-        </button>
+        <div className="note-sort-title">
+          Sort Notes ({size})
+          <button
+            className="display-expand"
+            onClick={() => expand("display-sort")}
+          >
+            <div id={"display-sort-text"}>Hide</div>
+          </button>
+        </div>
+        <div id="display-sort">
+          <button
+            className="note-sort-button-all"
+            onClick={() => changeSort("none")}
+          >
+            Show All
+          </button>
+          <button
+            className="note-sort-button-easy"
+            onClick={() => changeSort("Easy")}
+          >
+            Sort Easy
+          </button>
+          <button
+            className="note-sort-button-medium"
+            onClick={() => changeSort("Medium")}
+          >
+            Sort Medium
+          </button>
+          <button
+            className="note-sort-button-hard"
+            onClick={() => changeSort("Hard")}
+          >
+            Sort Hard
+          </button>
+          <button
+            className="note-sort-button-rank"
+            onClick={() => changeSort("Rank")}
+          >
+            Sort Ranked
+          </button>
+        </div>
       </div>
     );
   }
@@ -756,73 +786,83 @@ export class Folder extends React.Component {
 
     return (
       <div>
-        <div className="note-folder-title">Folders</div>
-        <div className="note-folder-context">
-          Here you can create folders for your notes. Enter a folder name and
-          press enter to view its contents!
+        <div className="note-folder-title">
+          Folders
+          <button
+            className="display-expand"
+            onClick={() => expand("display-folder")}
+          >
+            <div id="display-folder-text">Hide</div>
+          </button>
         </div>
-        <form onSubmit={noRefresh}>
-          <textarea
-            id="history-folder"
-            name="history-name"
-            rows="2"
-            cols="50"
-            placeholder="Enter the Folder name here"
-          ></textarea>
-        </form>
-        <button
-          className="note-create-submit"
-          onClick={() =>
-            openFolder(document.getElementById("history-folder").value)
-          }
-        >
-          Open Folder
-        </button>
-        <div className="note-folder-recent-title">
-          Recent Folders (Currently Open:{" "}
-          {localStorage.getItem("note-folder-history").toUpperCase()})
-        </div>
-        <div style={{ display: "inline-block" }}>
-          {history1 !== "" && (
-            <div
-              className="note-folder-history"
-              onClick={() => openFolder(history1)}
-            >
-              {history1.toUpperCase()}
-            </div>
-          )}
-          {history2 !== "" && (
-            <div
-              className="note-folder-history"
-              onClick={() => openFolder(history2)}
-            >
-              {history2.toUpperCase()}
-            </div>
-          )}
-          {history3 !== "" && (
-            <div
-              className="note-folder-history"
-              onClick={() => openFolder(history3)}
-            >
-              {history3.toUpperCase()}
-            </div>
-          )}
-          {history4 !== "" && (
-            <div
-              className="note-folder-history"
-              onClick={() => openFolder(history4)}
-            >
-              {history4.toUpperCase()}
-            </div>
-          )}
-          {history5 !== "" && (
-            <div
-              className="note-folder-history"
-              onClick={() => openFolder(history5)}
-            >
-              {history5.toUpperCase()}
-            </div>
-          )}
+        <div id="display-folder">
+          <div className="note-folder-context">
+            Here you can create folders for your notes. Enter a folder name and
+            press enter to view its contents!
+          </div>
+          <form onSubmit={noRefresh}>
+            <textarea
+              id="history-folder"
+              name="history-name"
+              rows="2"
+              cols="50"
+              placeholder="Enter the Folder name here"
+            ></textarea>
+          </form>
+          <button
+            className="note-create-submit"
+            onClick={() =>
+              openFolder(document.getElementById("history-folder").value)
+            }
+          >
+            Open Folder
+          </button>
+          <div className="note-folder-recent-title">
+            Recent Folders (Currently Open:{" "}
+            {localStorage.getItem("note-folder-history").toUpperCase()})
+          </div>
+          <div style={{ display: "inline-block" }}>
+            {history1 !== "" && (
+              <div
+                className="note-folder-history"
+                onClick={() => openFolder(history1)}
+              >
+                {history1.toUpperCase()}
+              </div>
+            )}
+            {history2 !== "" && (
+              <div
+                className="note-folder-history"
+                onClick={() => openFolder(history2)}
+              >
+                {history2.toUpperCase()}
+              </div>
+            )}
+            {history3 !== "" && (
+              <div
+                className="note-folder-history"
+                onClick={() => openFolder(history3)}
+              >
+                {history3.toUpperCase()}
+              </div>
+            )}
+            {history4 !== "" && (
+              <div
+                className="note-folder-history"
+                onClick={() => openFolder(history4)}
+              >
+                {history4.toUpperCase()}
+              </div>
+            )}
+            {history5 !== "" && (
+              <div
+                className="note-folder-history"
+                onClick={() => openFolder(history5)}
+              >
+                {history5.toUpperCase()}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );
@@ -840,36 +880,49 @@ export class CreateNote extends React.Component {
   render() {
     let title = "title-" + localStorage.getItem(pathname + "note-count");
     let context = "context-" + localStorage.getItem(pathname + "note-count");
+
+    let expandId = pathname + "display-create";
+    let expandIdText = pathname + "display-create-text";
     return (
       <div>
-        <div className="note-create-title">Create Notes</div>
-        <form onSubmit={noRefresh}>
-          <textarea
-            id={title}
-            name={title}
-            rows="2"
-            cols="50"
-            placeholder="Enter a title, theme, or topic here"
-          ></textarea>
-        </form>
-        <form onSubmit={noRefresh}>
-          <textarea
-            id={context}
-            name={context}
-            rows="5"
-            cols="50"
-            placeholder="Enter the context of the note here"
-          ></textarea>
-        </form>
-        <button className="note-create-submit" onClick={addNote}>
-          Create
-        </button>
-        <button className="note-create-clear" onClick={clearAll}>
-          Clear All
-        </button>
-        <button className="note-create-restore" onClick={restoreAll}>
-          Restore All
-        </button>
+        <div className="note-create-title">
+          Create Notes
+          <button
+            className="display-expand"
+            onClick={() => expand("display-create")}
+          >
+            <div id="display-create-text">Hide</div>
+          </button>
+        </div>
+        <div id="display-create">
+          <form onSubmit={noRefresh}>
+            <textarea
+              id={title}
+              name={title}
+              rows="2"
+              cols="50"
+              placeholder="Enter a title, theme, or topic here"
+            ></textarea>
+          </form>
+          <form onSubmit={noRefresh}>
+            <textarea
+              id={context}
+              name={context}
+              rows="5"
+              cols="50"
+              placeholder="Enter the context of the note here"
+            ></textarea>
+          </form>
+          <button className="note-create-submit" onClick={addNote}>
+            Create
+          </button>
+          <button className="note-create-clear" onClick={clearAll}>
+            Clear All
+          </button>
+          <button className="note-create-restore" onClick={restoreAll}>
+            Restore All
+          </button>
+        </div>
       </div>
     );
   }
