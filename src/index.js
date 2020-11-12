@@ -52,5 +52,5 @@ ReactDOM.render(<Title />, document.getElementById("title"));
 ReactDOM.render(<ReviewNotes />, document.getElementById("review-notes"));
 ReactDOM.render(<CreateNote />, document.getElementById("create-note"));
 ReactDOM.render(<Folder />, document.getElementById("folder-notes"));
-ReactDOM.render(<SortNotes />, document.getElementById("sort-notes"));
 ReactDOM.render(<LoadNotes />, document.getElementById("load-notes"));
+ReactDOM.render(<SortNotes />, document.getElementById("sort-notes"));

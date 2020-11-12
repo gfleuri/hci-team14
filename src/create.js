@@ -65,6 +65,7 @@ export class CreateNote extends React.Component {
 function clearAll() {
   localStorage.clear();
   // Regfreshing page
+  // eslint-disable-next-line
   window.location.pathname = window.location.pathname;
 }
 

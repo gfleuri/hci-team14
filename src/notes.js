@@ -51,7 +51,7 @@ function changeDifficulty(id, difficulty) {
 }
 
 /**
- * Creates a new note
+ * Edits a new note
  * @param {integer} i id of the note to be deleted
  **/
 function editNote(i) {
@@ -72,7 +72,7 @@ function editNote(i) {
 }
 
 /**
- * Creates a new note
+ * Deletes a note
  * @param {integer} i id of the note to be deleted
  **/
 function deleteNote(i) {
@@ -270,11 +270,11 @@ function loadNotes() {
       }
     } else if (localStorage.getItem(pathname + "note-sort") === "Medium") {
       if (difficulty === "Medium") {
-        loadedNotes.push(noteDOM); // add easy cards
+        loadedNotes.push(noteDOM); // add medium cards
       }
     } else if (localStorage.getItem(pathname + "note-sort") === "Hard") {
       if (difficulty === "Hard") {
-        loadedNotes.push(noteDOM); // add easy cards
+        loadedNotes.push(noteDOM); // add hard cards
       }
     } else {
       loadedNotes.push(noteDOM); // adding to the loaded notes

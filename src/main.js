@@ -59,8 +59,8 @@ export function renderPage() {
   ReactDOM.render(<CreateNote />, document.getElementById("create-note"));
   // Refreshing folder
   ReactDOM.render(<Folder />, document.getElementById("folder-notes"));
-  // Refreshing sort
-  ReactDOM.render(<SortNotes />, document.getElementById("sort-notes"));
   // Refreshing notes
   ReactDOM.render(<LoadNotes />, document.getElementById("load-notes"));
+  // Refreshing sort
+  ReactDOM.render(<SortNotes />, document.getElementById("sort-notes"));
 }
