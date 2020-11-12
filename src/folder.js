@@ -101,6 +101,10 @@ export class Folder extends React.Component {
   }
 }
 
+/**
+ * Opens a new folder
+ * @param {string} name name of the folder that will be opened
+ **/
 function openFolder(name) {
   localStorage.setItem("note-folder-history", name);
   // eslint-disable-next-line

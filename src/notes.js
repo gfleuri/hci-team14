@@ -2,6 +2,41 @@ import React from "react";
 import { removeReview } from "./review.js";
 import { pathname, renderPage } from "./main.js";
 
+export class LoadNotes extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { response: "" };
+  }
+
+  componentDidMount() {}
+
+  render() {
+    let loadedNotes = []; // Will Store each loaded note
+
+    if (localStorage.getItem(pathname + "note-sort") === "Rank") {
+      localStorage.setItem(pathname + "note-sort", "Hard");
+      loadedNotes.push(loadNotes());
+      localStorage.setItem(pathname + "note-sort", "Medium");
+      loadedNotes.push(loadNotes());
+      localStorage.setItem(pathname + "note-sort", "Easy");
+      loadedNotes.push(loadNotes());
+      localStorage.setItem(pathname + "note-sort", "Rank");
+    } else {
+      loadedNotes = [loadNotes()];
+    }
+
+    // Counting number of notes loaded
+    let counter = 0;
+    for (let i = 0; i < loadedNotes.length; i++) {
+      counter += loadedNotes[i].length;
+    }
+    localStorage.setItem(pathname + "note-loaded", counter);
+
+    // Returning the notes to be loaded
+    return loadedNotes;
+  }
+}
+
 /**
  * Changes a notes difficulty
  * @param {integer} id id of the note to be changed
@@ -246,39 +281,4 @@ function loadNotes() {
     }
   }
   return loadedNotes;
-}
-
-export class LoadNotes extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { response: "" };
-  }
-
-  componentDidMount() {}
-
-  render() {
-    let loadedNotes = []; // Will Store each loaded note
-
-    if (localStorage.getItem(pathname + "note-sort") === "Rank") {
-      localStorage.setItem(pathname + "note-sort", "Hard");
-      loadedNotes.push(loadNotes());
-      localStorage.setItem(pathname + "note-sort", "Medium");
-      loadedNotes.push(loadNotes());
-      localStorage.setItem(pathname + "note-sort", "Easy");
-      loadedNotes.push(loadNotes());
-      localStorage.setItem(pathname + "note-sort", "Rank");
-    } else {
-      loadedNotes = [loadNotes()];
-    }
-
-    // Counting number of notes loaded
-    let counter = 0;
-    for (let i = 0; i < loadedNotes.length; i++) {
-      counter += loadedNotes[i].length;
-    }
-    localStorage.setItem(pathname + "note-loaded", counter);
-
-    // Returning the notes to be loaded
-    return loadedNotes;
-  }
 }

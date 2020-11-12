@@ -7,6 +7,7 @@ import { Folder } from "./folder.js";
 import { SortNotes } from "./sort.js";
 import { LoadNotes } from "./notes.js";
 
+// Rendering all of the Class Components
 ReactDOM.render(<Title />, document.getElementById("title"));
 ReactDOM.render(<ReviewNotes />, document.getElementById("review-notes"));
 ReactDOM.render(<CreateNote />, document.getElementById("create-note"));
