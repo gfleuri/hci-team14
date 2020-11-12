@@ -10,6 +10,23 @@ export class Folder extends React.Component {
   componentDidMount() {}
 
   render() {
+    // Storing Recent Folder History
+    if (
+      localStorage.getItem("note-folder-history", "") === null ||
+      localStorage.getItem("note-folder-history-1", "") === null ||
+      localStorage.getItem("note-folder-history-2", "") === null ||
+      localStorage.getItem("note-folder-history-3", "") === null ||
+      localStorage.getItem("note-folder-history-4", "") === null ||
+      localStorage.getItem("note-folder-history-5", "") === null
+    ) {
+      localStorage.setItem("note-folder-history", "notes");
+      localStorage.setItem("note-folder-history-1", "notes");
+      localStorage.setItem("note-folder-history-2", "");
+      localStorage.setItem("note-folder-history-3", "");
+      localStorage.setItem("note-folder-history-4", "");
+      localStorage.setItem("note-folder-history-5", "");
+    }
+
     let history1 = localStorage.getItem("note-folder-history-1");
     let history2 = localStorage.getItem("note-folder-history-2");
     let history3 = localStorage.getItem("note-folder-history-3");
