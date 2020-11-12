@@ -64,21 +64,8 @@ export class CreateNote extends React.Component {
  **/
 function clearAll() {
   localStorage.clear();
-  localStorage.setItem(pathname + "note-count", 0);
-  localStorage.setItem(pathname + "note-loaded", 0);
-  localStorage.setItem(pathname + "note-sort", "none");
-  localStorage.setItem(pathname + "note-review-progress", 0);
-  localStorage.setItem(pathname + "note-review-total", 0);
-
-  localStorage.setItem("note-folder-history", "notes");
-  localStorage.setItem("note-folder-history-1", "notes");
-  localStorage.setItem("note-folder-history-2", "");
-  localStorage.setItem("note-folder-history-3", "");
-  localStorage.setItem("note-folder-history-4", "");
-  localStorage.setItem("note-folder-history-5", "");
-
-  // Refreshing page classes
-  renderPage();
+  // Regfreshing page
+  window.location.pathname = window.location.pathname;
 }
 
 /**

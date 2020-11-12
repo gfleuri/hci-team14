@@ -7,6 +7,22 @@ import { Folder } from "./folder.js";
 import { SortNotes } from "./sort.js";
 import { LoadNotes } from "./notes.js";
 
+// History null checks before giving pathname
+if (
+  localStorage.getItem("note-folder-history", "") === null ||
+  localStorage.getItem("note-folder-history-1", "") === null ||
+  localStorage.getItem("note-folder-history-2", "") === null ||
+  localStorage.getItem("note-folder-history-3", "") === null ||
+  localStorage.getItem("note-folder-history-4", "") === null ||
+  localStorage.getItem("note-folder-history-5", "") === null
+) {
+  localStorage.setItem("note-folder-history", "notes");
+  localStorage.setItem("note-folder-history-1", "notes");
+  localStorage.setItem("note-folder-history-2", "");
+  localStorage.setItem("note-folder-history-3", "");
+  localStorage.setItem("note-folder-history-4", "");
+  localStorage.setItem("note-folder-history-5", "");
+}
 // Getting custom pathname that will allow for multiple folders
 export let pathname = localStorage.getItem("note-folder-history");
 
