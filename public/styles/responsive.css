@@ -36,3 +36,11 @@
     display: block;
   }
 }
+
+/* Screen size less than 450 px */
+@media only screen and (max-width: 450px) {
+  /* Main Styling */
+  .main {
+    margin: 0 0.5% 10% 0.5%;
+  }
+}
