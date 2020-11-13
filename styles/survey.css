@@ -1,0 +1,24 @@
+/* Area where review settings are */
+.survey-info {
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  background-color: white;
+  padding: 10px;
+  margin-top: 10px;
+  display: none;
+}
+
+/* Note Review Day Select Buttons */
+.note-survey-button {
+  padding: 5px;
+  width: 100%;
+  margin-top: 5px;
+  margin-right: 5px;
+  background-color: rgba(70, 255, 163, 0.527);
+  color: rgba(0, 0, 0, 0.822);
+  border: 2px solid #e7e7e7;
+  border-radius: 5px;
+}
+.note-survey-button:hover {
+  background-color: rgba(70, 255, 163, 0.287);
+}
