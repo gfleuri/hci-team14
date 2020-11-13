@@ -30,7 +30,7 @@ export class Folder extends React.Component {
         <div id="display-folder">
           <div className="note-folder-context">
             Here you can create folders for your notes. Enter a folder name and
-            press enter to view its contents!
+            click open to view its contents!
           </div>
           <form onSubmit={noRefresh}>
             <textarea

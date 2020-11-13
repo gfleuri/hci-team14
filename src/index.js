@@ -7,6 +7,7 @@ import { Folder } from "./folder.js";
 import { SortNotes } from "./sort.js";
 import { LoadNotes } from "./notes.js";
 import { pathname } from "./main.js";
+import { Survey } from "./survey.js";
 
 // Initializng counter for amount of notes and sort type
 if (localStorage.getItem(pathname + "note-count") === null) {
@@ -49,6 +50,7 @@ if (
 
 // Rendering all of the Class Components
 ReactDOM.render(<Title />, document.getElementById("title"));
+ReactDOM.render(<Survey />, document.getElementById("survey-notes"));
 ReactDOM.render(<ReviewNotes />, document.getElementById("review-notes"));
 ReactDOM.render(<CreateNote />, document.getElementById("create-note"));
 ReactDOM.render(<Folder />, document.getElementById("folder-notes"));

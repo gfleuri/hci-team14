@@ -62,7 +62,7 @@ export class CreateNote extends React.Component {
 /**
  * Removes all of the existing notes
  **/
-function clearAll() {
+export function clearAll() {
   localStorage.clear();
   // Regfreshing page
   // eslint-disable-next-line
@@ -87,7 +87,7 @@ function restoreAll() {
 /**
  * Creates a new note
  **/
-function addNote() {
+export function addNote() {
   // Create new note ID
   let newNoteID = localStorage.getItem(pathname + "note-count");
 
