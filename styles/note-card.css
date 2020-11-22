@@ -53,6 +53,10 @@
 .note-youtube-link {
   margin-left: 10px;
 }
+.note-youtube-link:hover {
+  background-color: #e7e7e7;
+  border-radius: 5px;
+}
 
 /* CSS of the YouTube Link Context */
 .note-youtube-link-context {
@@ -68,6 +72,10 @@
   margin-left: 10px;
   color: rgb(6, 78, 146);
 }
+.note-google-link:hover {
+  background-color: #e7e7e7;
+  border-radius: 5px;
+}
 
 /* CSS of the Google Link Context */
 .note-google-link-context {
@@ -82,6 +90,10 @@
 .note-khan-link {
   margin-left: 10px;
   color: rgb(50, 6, 146);
+}
+.note-khan-link:hover {
+  background-color: #e7e7e7;
+  border-radius: 5px;
 }
 
 /* CSS of the Khan Link Context */
