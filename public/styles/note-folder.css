@@ -49,6 +49,7 @@
   background-color: white;
   padding: 10px;
   margin-right: 5px;
+  overflow: hidden;
 }
 .note-folder-history:hover {
   background-color: #e7e7e7;

@@ -22,3 +22,22 @@
 .note-survey-button:hover {
   background-color: rgba(70, 255, 163, 0.287);
 }
+
+/* CSS of the Google Form */
+.note-google-form {
+  margin-left: 10px;
+  color: rgb(6, 78, 146);
+}
+.note-google-form:hover {
+  background-color: #e7e7e7;
+  border-radius: 5px;
+}
+
+/* CSS of the Google Form Context */
+.note-google-form-context {
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  padding: 5px;
+  width: 130px;
+  height: 20px;
+}
