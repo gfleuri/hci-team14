@@ -30,11 +30,9 @@ Whether it is in a grocery store, school setting, or at work, the
 method of note-taking is a vital technique that many people use
 to retain their knowledge. On a daily basis, people return to their
 previously written notes to refresh their memory on a particular
-topic or guide them through their day, and it is during this pro-
-cess that the importance of note-taking is made clear. The inherent
+topic or guide them through their day, and it is during this process that the importance of note-taking is made clear. The inherent
 benefits provided by this form of reinforced learning are countless,
-especially as it continues to shape the way we process informa-
-tion and our day-to-day functions. People can always expect their
+especially as it continues to shape the way we process information and our day-to-day functions. People can always expect their
 notes to assist them with their attention span and ability to retain
 information, however, this does not always result in a productive
 plan or reaching their desired end goal. We plan to solve the issue
@@ -43,8 +41,7 @@ to keep track of what progress has been made. There are so many
 instances where people will keep more notes than they need to in
 order to study. This happens a lot in college as some professors
 won’t directly tell their students what to take notes on, and as a
-result, many people will take notes on everything as a precaution-
-ary measure. Eliminating these redundancies would undoubtedly
+result, many people will take notes on everything as a precautionary measure. Eliminating these redundancies would undoubtedly
 provide a more effective approach to studying, providing the user
 with the opportunity to solely focus on the topics and themes that
 were relevant. The target audience for our application will consist
@@ -68,8 +65,7 @@ recorded their notes for math class and had the ability to tell the
 application that they desired to re-learn the material in 48 hours,
 and the device could create a scheduled two day plan for it, it would
 be much more effective. This in essence is great for a multitude of
-reasons. For example, it will help reduce the probability of the stu-
-dent waiting until the last minute to study and not having sufficient
+reasons. For example, it will help reduce the probability of the student waiting until the last minute to study and not having sufficient
 time to retain information. Secondly, it provides the opportunity to
 evenly distribute the amount of time someone planned on studying
 for each class, offering better time management. This is especially
