@@ -29,13 +29,15 @@ export class Survey extends React.Component {
           <b>Tasks:</b>
           <br />
           <br />
-          1. Save the notes in the folder.
+          1. Take a few more notes on the Excerpt provided below.
           <br />
           2. Rank the notes by a difficulty level.
           <br />
           3. Select the specified number of days available to study.
           <br />
-          4. Review the resources linked to the notes that you wrote.
+          4. Review the suggested resources linked to the notes that you wrote.
+          <br />
+          5. Fill out the Google Survey form. Thank you!
           <br />
           <br />
           <b>Google Form:</b>{" "}
@@ -47,6 +49,26 @@ export class Survey extends React.Component {
           </a>
           <br />
           <br />
+          <div
+            style={{
+              margin: "10px 50px 20px 50px",
+              padding: "20px",
+              backgroundColor: "rgb(247,247,247)",
+              borderRadius: "10px",
+              color: "rgb(80,80,80)",
+            }}
+          >
+            Home office: The nucleus
+            <br />
+            <br />
+            The nucleus houses and protects the cell’s DNA, which contains all
+            of the instructions necessary for the cell to function. The DNA is
+            like a set of blueprints for the cell, so you can think of the
+            nucleus as the office where the blueprints are kept. If information
+            from the blueprints is required, the information is copied into RNA
+            molecules and moved out of the nucleus. The DNA plans stay safely
+            locked away.
+          </div>
           <button
             className="note-create-clear"
             style={{ width: "100%" }}
